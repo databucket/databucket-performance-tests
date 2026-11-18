@@ -18,6 +18,9 @@ The report: `build/reports/gatling/databucketsimulation-<time>/index.html` (the 
 fails (`BUILD FAILED`) when the assertions fail: 95th percentile above `-Pp95`, or more failed requests than
 `-PmaxFailedPercent`.
 
+Keep a report with its settings: `./gradlew keepReport -Pname=<measurement>/<run>` → `results/<measurement>/<run>/`
+(see [results](results/README.md)).
+
 ## How a test runs
 
 - **Accounts**: a pool of `-Ptesters` accounts (`perf-tester-0001` …, ROBOT in the project, created by prepareData).

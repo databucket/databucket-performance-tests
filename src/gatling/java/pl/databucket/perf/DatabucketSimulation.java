@@ -48,9 +48,18 @@ public class DatabucketSimulation extends Simulation {
                         global().failedRequests().percent().lt(PerfConfig.MAX_FAILED_PERCENT));
     }
 
-    /** Right before the load starts: the end of the test is counted from here. */
+    /** Right before the load starts: the end of the test is counted from here; the settings kept for keepReport. */
     @Override
     public void before() {
         Scenarios.start();
+        try {
+            java.nio.file.Path file = java.nio.file.Path.of("build", "reports", "gatling", "last-run.txt");
+            java.nio.file.Files.createDirectories(file.getParent());
+            java.nio.file.Files.writeString(file, "Started " + java.time.LocalDateTime.now().withNano(0) + "\n"
+                    + PerfConfig.describe().replace(" | ", "\n") + "\n"
+                    + "rules " + PerfConfig.RULES + " = " + RuleSets.get(PerfConfig.RULES) + ", sort " + PerfConfig.SORT + "\n");
+        } catch (java.io.IOException e) {
+            System.out.println("Can't write the settings of the run: " + e.getMessage());
+        }
     }
 }

@@ -1,0 +1,7 @@
+Started 2026-11-18T18:58:56
+Databucket http://databucket.localhost, project perf, bucket users
+100 users of 1000 accounts, mix {create=40, search=30, delete=30}
+ramp-up 30 s, then 120 s
+delay 500-2000 ms
+p95 < 1000 ms, failed < 1.0 %
+rules premium-pl = [["$.type","==","PREMIUM"],["$.country","==","PL"]], sort id
