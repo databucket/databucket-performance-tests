@@ -40,6 +40,20 @@ public final class PerfConfig {
     public static final Duration DELAY_MIN = Duration.ofMillis(number("delayMin", 500));
     public static final Duration DELAY_MAX = Duration.ofMillis(number("delayMax", 2000));
 
+    /**
+     * How the scenarios find rows: "properties" (search by the rule set -Prules, delete by $.origin) or "tags" (search
+     * only by the tag -Ptag, delete only by the tag perf-created; rows created by the test get that tag).
+     */
+    public static final String FILTER = text("filter", "properties");
+    /** Tags of the rows of prepareData (perf-tag-01 ...), and the one searched with filter=tags. */
+    public static final int TAGS = number("tags", 10);
+    public static final String TAG = text("tag", "perf-tag-03");
+    public static final String CREATED_TAG = "perf-created";
+
+    public static String tagName(int number) {
+        return "perf-tag-" + String.format("%02d", number);
+    }
+
     /** Scenario search: the rule set (src/gatling/resources/rules.json) and the order of the reserved rows. */
     public static final String RULES = text("rules", "active");
     public static final String SORT = text("sort", "id");
@@ -65,6 +79,7 @@ public final class PerfConfig {
     public static String describe() {
         return "Databucket " + BASE_URL + ", project " + PROJECT + ", bucket " + BUCKET
                 + " | " + USERS + " users of " + TESTERS + " accounts, mix " + MIX
+                + " | filter " + FILTER + ("tags".equals(FILTER) ? " (tag " + TAG + ")" : " (rules " + RULES + ")")
                 + " | ramp-up " + RAMP_UP.toSeconds() + " s, then " + DURATION.toSeconds() + " s"
                 + " | delay " + DELAY_MIN.toMillis() + "-" + DELAY_MAX.toMillis() + " ms"
                 + " | p95 < " + P95 + " ms, failed < " + MAX_FAILED_PERCENT + " %";

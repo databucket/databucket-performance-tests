@@ -73,6 +73,12 @@ fields the rules use, so the data doesn't run out.
 test with 30 search users: ~800 reservations of 30 rows). `-Psort=random` spreads the reservations over the whole
 bucket (a costlier query: it is part of what is measured).
 
+### Filter: properties or tags
+
+`-Pfilter=properties` (default) uses the rule set `-Prules` (below) for search and `$.origin` for delete.
+`-Pfilter=tags` uses only tags: search reserves rows of the tag `-Ptag` (default `perf-tag-03`; prepareData spreads
+`-Ptags` = 10 tags over its rows, 10 % each), create gives new rows the tag `perf-created` and delete finds them by it.
+
 ### Rule sets
 
 `src/gatling/resources/rules.json`, chosen before the test with `-Prules=<name>` (default `active`). Add your own:
@@ -123,9 +129,10 @@ A rule set must match more free rows than there are search users, otherwise rese
 | `startJitter` (1000) | random wait of a user before signing in, ms |
 | `mix` (`create:40,search:30,delete:30`) | share of the users per scenario, % |
 | `delayMin`, `delayMax` (500, 2000) | random pause between the steps, ms |
+| `filter` (`properties`), `tag` (`perf-tag-03`) | rules on properties or only on tags (see above) |
 | `rules` (`active`), `sort` (`id`) | scenario search: rule set, order of the reserved rows (`id`, `random`) |
 | `p95` (1000), `maxFailedPercent` (1) | assertions |
-| `rows` (100000), `reservedPercent` (20), `history` (true), `admin` (`perf-admin`) | prepareData |
+| `rows` (100000), `reservedPercent` (20), `tags` (10), `history` (true), `admin` (`perf-admin`) | prepareData |
 | `superUser`, `superPassword` (`super`, `super`) | prepareData: the SUPER admin creating the project and accounts |
 
 Failed requests with their responses in the console: set `io.gatling.http.engine.response` to `DEBUG` in

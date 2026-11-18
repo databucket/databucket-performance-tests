@@ -9,3 +9,4 @@ Keep a run: `./gradlew keepReport -Pname=<measurement>/<run>` right after `gatli
 | Date | Measurement | Result |
 |---|---|---|
 | 2026-11-18 | [1M rows: without and with indexes on the properties](2026-11-18-1m-rows-indexes/README.md) | p95 3158 → 135 ms, throughput 59 → 113 req/s |
+| 2026-11-18 | [1M rows: rules on a tag vs rules on properties](2026-11-18-1m-rows-tags/README.md) (repeated with `VACUUM FULL` before each run) | p95: properties without indexes 4853 ms, tag 130 ms, properties with indexes 50 ms |

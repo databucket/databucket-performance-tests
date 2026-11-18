@@ -1,0 +1,822 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="style/favicon.ico">
+<link href="style/style.css" rel="stylesheet" type="text/css">
+<link href="style/bootstrap.min.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-3.7.1.slim.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/gatling.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/ellipsis.js"></script>
+<script src="js/highstock.js"></script>
+<script src="js/highcharts-more.js"></script>
+<script src="js/theme.js"></script>
+<title>Gatling Stats - delete 1. find created users</title>
+</head>
+<body>
+<script>
+  const storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  if (storedTheme) document.documentElement.setAttribute('data-theme', storedTheme)
+
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const targetTheme = currentTheme === "light" ? "dark" : "light";
+
+    document.documentElement.setAttribute('data-theme', targetTheme)
+    localStorage.setItem('theme', targetTheme);
+  };
+</script>
+<div class="app-container">
+<div class="frise"></div>
+<div class="head">
+  <div class="gatling-open-source">
+    <a class="gatling-logo gatling-logo-light" href="https://gatling.io" target="blank_" title="Gatling Home Page"><img alt="Gatling" src="style/logo-light.svg"></a>
+    <a class="gatling-logo gatling-logo-dark" href="https://gatling.io" target="blank_" title="Gatling Home Page"><img alt="Gatling" src="style/logo-dark.svg"></a>
+    <a class="gatling-documentation" href="https://gatling.io/docs/" target="_blank">Documentation</a>
+  </div>
+  <div class="nav spacer"></div>
+  <a class="enterprise" href="https://gatling.io/enterprise/next-step/" target="_blank">
+    <span class="button-text-state">Try Enterprise Edition</span>
+    <span class="button-text-hover">Try Enterprise Edition</span>
+  </a>
+  <button id="theme-toggle" class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Toggle user interface mode">
+    <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+    <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+  </button>
+</div>
+<div class="container details">
+  <div class="nav">
+    <ul><li data-parent="ROOT" >
+  <span id="menu-req_sign-in-2088202856" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+  <a href="req_sign-in-2088202856.html" class="item withTooltip">
+    <span class="nav-tooltip" id="parent-menu-label-req_sign-in-2088202856" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+      <span onmouseover="isEllipsed('menu-label-req_sign-in-2088202856')" id="menu-label-req_sign-in-2088202856" class="nav-label ellipsed-name">sign in</span>
+    </span>
+  </a>
+</li><li data-parent="ROOT" >
+  <span id="menu-req_create-1--inser-2095741543" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+  <a href="req_create-1--inser-2095741543.html" class="item withTooltip">
+    <span class="nav-tooltip" id="parent-menu-label-req_create-1--inser-2095741543" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+      <span onmouseover="isEllipsed('menu-label-req_create-1--inser-2095741543')" id="menu-label-req_create-1--inser-2095741543" class="nav-label ellipsed-name">create 1. insert a user (reserved)</span>
+    </span>
+  </a>
+</li><li data-parent="ROOT" >
+  <span id="menu-req_search-1--find---1165095625" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+  <a href="req_search-1--find---1165095625.html" class="item withTooltip">
+    <span class="nav-tooltip" id="parent-menu-label-req_search-1--find---1165095625" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+      <span onmouseover="isEllipsed('menu-label-req_search-1--find---1165095625')" id="menu-label-req_search-1--find---1165095625" class="nav-label ellipsed-name">search 1. find and reserve: tag perf-tag-03</span>
+    </span>
+  </a>
+</li><li data-parent="ROOT" class="on">
+  <span id="menu-req_delete-1--find--1439479511" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+  <a href="req_delete-1--find--1439479511.html" class="item withTooltip">
+    <span class="nav-tooltip" id="parent-menu-label-req_delete-1--find--1439479511" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+      <span onmouseover="isEllipsed('menu-label-req_delete-1--find--1439479511')" id="menu-label-req_delete-1--find--1439479511" class="nav-label ellipsed-name">delete 1. find created users</span>
+    </span>
+  </a>
+</li><li data-parent="ROOT" >
+  <span id="menu-req_search-3--modif-611231143" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+  <a href="req_search-3--modif-611231143.html" class="item withTooltip">
+    <span class="nav-tooltip" id="parent-menu-label-req_search-3--modif-611231143" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+      <span onmouseover="isEllipsed('menu-label-req_search-3--modif-611231143')" id="menu-label-req_search-3--modif-611231143" class="nav-label ellipsed-name">search 3. modify</span>
+    </span>
+  </a>
+</li><li data-parent="ROOT" >
+  <span id="menu-req_create-3--modif-274122747" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+  <a href="req_create-3--modif-274122747.html" class="item withTooltip">
+    <span class="nav-tooltip" id="parent-menu-label-req_create-3--modif-274122747" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+      <span onmouseover="isEllipsed('menu-label-req_create-3--modif-274122747')" id="menu-label-req_create-3--modif-274122747" class="nav-label ellipsed-name">create 3. modify</span>
+    </span>
+  </a>
+</li><li data-parent="ROOT" >
+  <span id="menu-req_search-5--modif--1818791737" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+  <a href="req_search-5--modif--1818791737.html" class="item withTooltip">
+    <span class="nav-tooltip" id="parent-menu-label-req_search-5--modif--1818791737" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+      <span onmouseover="isEllipsed('menu-label-req_search-5--modif--1818791737')" id="menu-label-req_search-5--modif--1818791737" class="nav-label ellipsed-name">search 5. modify and release</span>
+    </span>
+  </a>
+</li><li data-parent="ROOT" >
+  <span id="menu-req_create-5--modif--1923435237" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+  <a href="req_create-5--modif--1923435237.html" class="item withTooltip">
+    <span class="nav-tooltip" id="parent-menu-label-req_create-5--modif--1923435237" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+      <span onmouseover="isEllipsed('menu-label-req_create-5--modif--1923435237')" id="menu-label-req_create-5--modif--1923435237" class="nav-label ellipsed-name">create 5. modify and release</span>
+    </span>
+  </a>
+</li><li data-parent="ROOT" >
+  <span id="menu-req_delete-3--delet--1148088049" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+  <a href="req_delete-3--delet--1148088049.html" class="item withTooltip">
+    <span class="nav-tooltip" id="parent-menu-label-req_delete-3--delet--1148088049" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+      <span onmouseover="isEllipsed('menu-label-req_delete-3--delet--1148088049')" id="menu-label-req_delete-3--delet--1148088049" class="nav-label ellipsed-name">delete 3. delete a user</span>
+    </span>
+  </a>
+</li></ul>
+  </div>
+  <div class="cadre">
+    <div class="content">
+      <div class="content-header">
+        <div class="onglet">
+          DatabucketSimulation
+        </div>
+        <div class="sous-menu" id="sousMenu">
+          <div class="sous-menu-spacer">
+            <div class="item"><a href="index.html">Global</a></div>
+<div class="item ouvert"><a id="details_link" href="req_sign-in-2088202856.html">Details</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="content-in">
+        <div class="container-article">
+          <div class="article">
+            
+            
+<div class="schema-container">
+
+            <div id="RangesContainerId" class="schema ranges-large">
+            </div>
+
+                        <div class="infos">
+                            <div class="infos-in">
+	                        <div class="infos-title">Stats</div>
+                                <div class="info">
+                                    <h2 class="first">Executions</h2>
+                                    <table>
+                                        <thead>
+                                            <tr><th></th><th>Total</th><th>OK</th><th>KO</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="title">Total count</td>
+                                                <td class="total">2276</td>
+                                                <td class="ok">2276</td>
+                                                <td class="ko">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Mean count/s</abbr></td>
+                                                <td class="total">14.88</td>
+                                                <td class="ok">14.88</td>
+                                                <td class="ko">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <h2 class="second">Response Time (ms)</h2>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Total</th>
+                                                <th>OK</th>
+                                                <th>KO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="title">Min</td>
+                                                <td class="total">6</td>
+                                                <td class="ok">6</td>
+                                                <td class="ko">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">50th percentile</td>
+                                                <td class="total">13</td>
+                                                <td class="ok">13</td>
+                                                <td class="ko">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">75th percentile</td>
+                                                <td class="total">14</td>
+                                                <td class="ok">14</td>
+                                                <td class="ko">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">95th percentile</td>
+                                                <td class="total">22</td>
+                                                <td class="ok">22</td>
+                                                <td class="ko">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">99th percentile</td>
+                                                <td class="total">91</td>
+                                                <td class="ok">91</td>
+                                                <td class="ko">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Max</td>
+                                                <td class="total">38824</td>
+                                                <td class="ok">38824</td>
+                                                <td class="ko">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Mean</td>
+                                                <td class="total">32</td>
+                                                <td class="ok">32</td>
+                                                <td class="ko">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Standard Deviation</td>
+                                                <td class="total">814</td>
+                                                <td class="ok">814</td>
+                                                <td class="ko">-</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+</div>
+
+            <div class="schema geant">
+              <div id="responseTimeDistributionContainerId" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+              <div id="responseTimeOverTimeContainerId" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+                <div id="requestsContainerId" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+                <div id="responsesContainerId" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+              <div id="responseTimeScatterContainerId" class="geant"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.simulation-tooltip').popover({trigger:'hover', placement:'left'});
+        $('.nav').expandable();
+$('.nav-tooltip').popover({trigger:'hover'});
+        setActiveMenu();
+        
+new Highcharts.Chart({
+  chart: {
+    renderTo: 'RangesContainerId',
+    marginRight: 100
+  },
+  legend: { enabled: false },
+  title: {
+    text: '\x3cspan class=\"chart_title\"\x3eResponse Time Ranges\x3c/span\x3e',
+    useHTML: true
+  },
+  xAxis: {
+    categories: [
+      "t < 800 ms",
+      "t >= 800 ms <br> t < 1200 ms",
+      "t >= 1200 ms",
+      "failed"
+    ]
+  },
+  yAxis: {
+    title: { text: 'Number of Requests' },
+    reversedStacks: false
+  },
+  tooltip: {
+    formatter: function() {
+      var s;
+      if (this.point.name) { // the pie chart
+        s = ''+ this.point.name +': '+ this.y + '% requests';
+      } else {
+        s = ''+ this.y + ' requests';
+      }
+      return s;
+    }
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal',
+      shadow: true
+    }
+  },
+  series: [
+    {
+      type: 'column',
+      data: [{
+      	color: '#68b65c',
+      	y: 2275
+      },
+      {
+      	color: '#FFDD00',
+      	y: 0
+      },
+      {
+      	color: '#FFA900',
+      	y: 1
+      },
+      {
+      	color: '#f15b4f',
+      	y: 0
+      }]
+    },
+    {
+      type: 'pie',
+      name: 'Percentages',
+      data: [
+        {
+          name: "t < 800 ms",
+          y: 99.95606326889279,
+          color: '#68b65c'
+        },
+        {
+          name: "800 ms <= t < 1200 ms",
+          y: 0.0,
+          color: '#FFDD00'
+        },
+        {
+          name: "t >= 1200 ms",
+          y: 0.04393673110720562,
+          color: '#FFA900'
+        },
+        {
+          name: "failed",
+          y: 0.0,
+          color: '#f15b4f'
+        }
+      ],
+      center: [368, 0],
+      size: 90,
+      showInLegend: false,
+      dataLabels: { enabled: false }
+    }
+  ]
+});
+
+	    $('#container_errors').sortable('#container_errors');
+    
+new Highcharts.Chart({
+  chart: {
+    renderTo: 'responseTimeDistributionContainerId',
+    type: 'column',
+    marginBottom: 60
+  },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: 5
+  },
+  title: {
+    text: '\x3cspan class=\"chart_title\"\x3eResponse Time Distribution\x3c/span\x3e',
+    useHTML: true
+  },
+  xAxis: {
+    categories: ['200', '588', '976', '1365', '1753', '2141', '2529', '2917', '3306', '3694', '4082', '4470', '4858', '5246', '5635', '6023', '6411', '6799', '7187', '7576', '7964', '8352', '8740', '9128', '9516', '9905', '10293', '10681', '11069', '11457', '11845', '12234', '12622', '13010', '13398', '13786', '14175', '14563', '14951', '15339', '15727', '16115', '16504', '16892', '17280', '17668', '18056', '18445', '18833', '19221', '19609', '19997', '20385', '20774', '21162', '21550', '21938', '22326', '22715', '23103', '23491', '23879', '24267', '24655', '25044', '25432', '25820', '26208', '26596', '26985', '27373', '27761', '28149', '28537', '28925', '29314', '29702', '30090', '30478', '30866', '31254', '31643', '32031', '32419', '32807', '33195', '33584', '33972', '34360', '34748', '35136', '35524', '35913', '36301', '36689', '37077', '37465', '37854', '38242', '38630'],
+    tickInterval: 20
+  },
+  yAxis: {
+    min: 0,
+    title: { text: 'Percentage of Requests' },
+    reversedStacks: false
+  },
+  tooltip: {
+    formatter: function() {
+      return '<b>'+ this.x +' ms</b><br/>'+
+      this.series.name +': '+ this.y +' %<br/>'+
+      'Total: '+ this.point.stackTotal + ' %';
+    }
+  },
+  plotOptions: {
+    series: {
+      groupPadding: 0,
+      stacking: 'normal',
+	    shadow: true
+    }
+  },
+  series: [
+  	{
+type: 'column',
+color: '#68b65c',
+name: 'OK',
+data: [
+  99.96,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04
+]
+},
+  	{
+type: 'column',
+color: '#f15b4f',
+name: 'KO',
+data: [
+  0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+]
+}
+  ]
+});
+
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'responseTimeOverTimeContainerId',
+    zoomType: 'x',
+    marginBottom: 60
+  },
+  colors: ['#c4fd90', '#7ff77f', '#6ff2ad', '#61ede6', '#58c7e0', '#4ea1d4', '#487ad9', '#3f52cc', '#7335dc', '#c73905', '#FFA900'],
+  legend: {
+    enabled: true,
+    floating: true,
+    y: -65
+  },
+  title: {
+    text: '\x3cspan class=\"chart_title\"\x3eResponse Time Percentiles over Time (OK)\x3c/span\x3e',
+    useHTML: true
+  },
+  navigator: {
+    baseSeries: 9
+  },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold'
+      },
+      states: {
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black', fontWeight: 'bold' }
+        },
+        select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    labelStyle: { color: '#8b897d' },
+    buttons: [
+      { type: 'minute', count: 1, text: '1m' },
+      { type: 'minute', count: 10, text: '10m' },
+      { type: 'hour', count: 1, text: '1h' },
+      { type: 'all', count: 1, text: 'All' }
+    ],
+    selected: 3,
+    inputEnabled: false
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    minRange: 10000 // can't zoom in below 10 seconds
+  },
+  yAxis:[
+    {
+      min: 0,
+      title: { text: 'Response Time (ms)' },
+      opposite: false
+    }
+  ],
+  tooltip: { valueSuffix: ' ms' },
+  plotOptions: {
+    arearange: { lineWidth: 1 },
+    series: {
+      dataGrouping: { enabled: false }
+    }
+  },
+  series: [
+  
+         {
+name: 'min',
+data: [[1795026467000, null], [1795026468000, 12], [1795026469000, 16], [1795026470000, 17], [1795026471000, 10], [1795026472000, 12], [1795026473000, 12], [1795026474000, 12], [1795026475000, 10], [1795026476000, 10], [1795026477000, 11], [1795026478000, 8], [1795026479000, 9], [1795026480000, 10], [1795026481000, 9], [1795026482000, 8], [1795026483000, 8], [1795026484000, 9], [1795026485000, 9], [1795026486000, 8], [1795026487000, 7], [1795026488000, 7], [1795026489000, 9], [1795026490000, 9], [1795026491000, 10], [1795026492000, 10], [1795026493000, 8], [1795026494000, 8], [1795026495000, 9], [1795026496000, 9], [1795026497000, 9], [1795026498000, 8], [1795026499000, 9], [1795026500000, 9], [1795026501000, 9], [1795026502000, 12], [1795026503000, 13], [1795026504000, null], [1795026505000, null], [1795026506000, null], [1795026507000, null], [1795026508000, null], [1795026509000, null], [1795026510000, null], [1795026511000, null], [1795026512000, null], [1795026513000, null], [1795026514000, null], [1795026515000, null], [1795026516000, null], [1795026517000, null], [1795026518000, null], [1795026519000, null], [1795026520000, null], [1795026521000, null], [1795026522000, null], [1795026523000, null], [1795026524000, null], [1795026525000, null], [1795026526000, null], [1795026527000, null], [1795026528000, null], [1795026529000, null], [1795026530000, null], [1795026531000, null], [1795026532000, null], [1795026533000, null], [1795026534000, null], [1795026535000, null], [1795026536000, null], [1795026537000, null], [1795026538000, null], [1795026539000, null], [1795026540000, null], [1795026541000, 19], [1795026542000, 39], [1795026543000, 13], [1795026544000, 15], [1795026545000, 13], [1795026546000, 9], [1795026547000, 7], [1795026548000, 8], [1795026549000, 8], [1795026550000, 6], [1795026551000, 10], [1795026552000, 10], [1795026553000, 6], [1795026554000, 9], [1795026555000, 7], [1795026556000, 8], [1795026557000, 7], [1795026558000, 8], [1795026559000, 7], [1795026560000, 6], [1795026561000, 9], [1795026562000, 12], [1795026563000, 11], [1795026564000, 12], [1795026565000, 8], [1795026566000, 7], [1795026567000, 6], [1795026568000, 6], [1795026569000, 7], [1795026570000, 7], [1795026571000, 8], [1795026572000, 9], [1795026573000, 8], [1795026574000, 7], [1795026575000, 6], [1795026576000, 7], [1795026577000, 8], [1795026578000, 8], [1795026579000, 7], [1795026580000, 10], [1795026581000, 7], [1795026582000, 7], [1795026583000, 8], [1795026584000, 8], [1795026585000, 7], [1795026586000, 7], [1795026587000, 8], [1795026588000, 7], [1795026589000, 6], [1795026590000, 8], [1795026591000, 7], [1795026592000, 8], [1795026593000, 9], [1795026594000, 7], [1795026595000, 7], [1795026596000, 7], [1795026597000, 8], [1795026598000, 6], [1795026599000, 7], [1795026600000, 7], [1795026601000, 7], [1795026602000, 6], [1795026603000, 9], [1795026604000, 8], [1795026605000, 9], [1795026606000, 7], [1795026607000, 7], [1795026608000, 9], [1795026609000, 7], [1795026610000, 9], [1795026611000, 8], [1795026612000, 7], [1795026613000, 7], [1795026614000, 7], [1795026615000, 7], [1795026616000, 7], [1795026617000, null], [1795026618000, null], [1795026619000, null]],
+type : 'area',
+yAxis: 0,
+zIndex: 10
+},
+         {
+name: '25%',
+data: [[1795026467000, null], [1795026468000, 14], [1795026469000, 16], [1795026470000, 17], [1795026471000, 13], [1795026472000, 13], [1795026473000, 12], [1795026474000, 15], [1795026475000, 11], [1795026476000, 12], [1795026477000, 12], [1795026478000, 10], [1795026479000, 9], [1795026480000, 11], [1795026481000, 9], [1795026482000, 12], [1795026483000, 10], [1795026484000, 12], [1795026485000, 11], [1795026486000, 10], [1795026487000, 10], [1795026488000, 10], [1795026489000, 11], [1795026490000, 11], [1795026491000, 12], [1795026492000, 11], [1795026493000, 10], [1795026494000, 13], [1795026495000, 11], [1795026496000, 11], [1795026497000, 12], [1795026498000, 10], [1795026499000, 12], [1795026500000, 10], [1795026501000, 11], [1795026502000, 16], [1795026503000, 13], [1795026504000, null], [1795026505000, null], [1795026506000, null], [1795026507000, null], [1795026508000, null], [1795026509000, null], [1795026510000, null], [1795026511000, null], [1795026512000, null], [1795026513000, null], [1795026514000, null], [1795026515000, null], [1795026516000, null], [1795026517000, null], [1795026518000, null], [1795026519000, null], [1795026520000, null], [1795026521000, null], [1795026522000, null], [1795026523000, null], [1795026524000, null], [1795026525000, null], [1795026526000, null], [1795026527000, null], [1795026528000, null], [1795026529000, null], [1795026530000, null], [1795026531000, null], [1795026532000, null], [1795026533000, null], [1795026534000, null], [1795026535000, null], [1795026536000, null], [1795026537000, null], [1795026538000, null], [1795026539000, null], [1795026540000, null], [1795026541000, 19], [1795026542000, 87], [1795026543000, 23], [1795026544000, 25], [1795026545000, 19], [1795026546000, 13], [1795026547000, 11], [1795026548000, 10], [1795026549000, 11], [1795026550000, 9], [1795026551000, 13], [1795026552000, 12], [1795026553000, 12], [1795026554000, 12], [1795026555000, 9], [1795026556000, 12], [1795026557000, 9], [1795026558000, 10], [1795026559000, 10], [1795026560000, 10], [1795026561000, 12], [1795026562000, 13], [1795026563000, 13], [1795026564000, 13], [1795026565000, 10], [1795026566000, 11], [1795026567000, 11], [1795026568000, 12], [1795026569000, 10], [1795026570000, 10], [1795026571000, 11], [1795026572000, 12], [1795026573000, 12], [1795026574000, 10], [1795026575000, 10], [1795026576000, 9], [1795026577000, 11], [1795026578000, 10], [1795026579000, 10], [1795026580000, 12], [1795026581000, 10], [1795026582000, 11], [1795026583000, 12], [1795026584000, 11], [1795026585000, 9], [1795026586000, 9], [1795026587000, 12], [1795026588000, 11], [1795026589000, 11], [1795026590000, 11], [1795026591000, 10], [1795026592000, 10], [1795026593000, 11], [1795026594000, 10], [1795026595000, 10], [1795026596000, 9], [1795026597000, 11], [1795026598000, 11], [1795026599000, 9], [1795026600000, 9], [1795026601000, 10], [1795026602000, 9], [1795026603000, 11], [1795026604000, 11], [1795026605000, 11], [1795026606000, 10], [1795026607000, 10], [1795026608000, 11], [1795026609000, 12], [1795026610000, 12], [1795026611000, 10], [1795026612000, 9], [1795026613000, 10], [1795026614000, 9], [1795026615000, 10], [1795026616000, 12], [1795026617000, null], [1795026618000, null], [1795026619000, null]],
+type : 'area',
+yAxis: 0,
+zIndex: 9
+},
+         {
+name: '50%',
+data: [[1795026467000, null], [1795026468000, 21], [1795026469000, 27], [1795026470000, 21], [1795026471000, 19], [1795026472000, 15], [1795026473000, 13], [1795026474000, 16], [1795026475000, 13], [1795026476000, 12], [1795026477000, 13], [1795026478000, 11], [1795026479000, 15], [1795026480000, 12], [1795026481000, 10], [1795026482000, 13], [1795026483000, 11], [1795026484000, 14], [1795026485000, 13], [1795026486000, 12], [1795026487000, 11], [1795026488000, 12], [1795026489000, 12], [1795026490000, 13], [1795026491000, 13], [1795026492000, 13], [1795026493000, 11], [1795026494000, 13], [1795026495000, 13], [1795026496000, 12], [1795026497000, 12], [1795026498000, 12], [1795026499000, 13], [1795026500000, 12], [1795026501000, 13], [1795026502000, 23], [1795026503000, 19418], [1795026504000, null], [1795026505000, null], [1795026506000, null], [1795026507000, null], [1795026508000, null], [1795026509000, null], [1795026510000, null], [1795026511000, null], [1795026512000, null], [1795026513000, null], [1795026514000, null], [1795026515000, null], [1795026516000, null], [1795026517000, null], [1795026518000, null], [1795026519000, null], [1795026520000, null], [1795026521000, null], [1795026522000, null], [1795026523000, null], [1795026524000, null], [1795026525000, null], [1795026526000, null], [1795026527000, null], [1795026528000, null], [1795026529000, null], [1795026530000, null], [1795026531000, null], [1795026532000, null], [1795026533000, null], [1795026534000, null], [1795026535000, null], [1795026536000, null], [1795026537000, null], [1795026538000, null], [1795026539000, null], [1795026540000, null], [1795026541000, 21], [1795026542000, 184], [1795026543000, 27], [1795026544000, 34], [1795026545000, 22], [1795026546000, 13], [1795026547000, 14], [1795026548000, 11], [1795026549000, 12], [1795026550000, 10], [1795026551000, 16], [1795026552000, 12], [1795026553000, 13], [1795026554000, 14], [1795026555000, 10], [1795026556000, 12], [1795026557000, 12], [1795026558000, 12], [1795026559000, 12], [1795026560000, 12], [1795026561000, 12], [1795026562000, 14], [1795026563000, 14], [1795026564000, 15], [1795026565000, 12], [1795026566000, 13], [1795026567000, 13], [1795026568000, 13], [1795026569000, 12], [1795026570000, 12], [1795026571000, 13], [1795026572000, 13], [1795026573000, 13], [1795026574000, 12], [1795026575000, 12], [1795026576000, 12], [1795026577000, 12], [1795026578000, 11], [1795026579000, 12], [1795026580000, 13], [1795026581000, 13], [1795026582000, 12], [1795026583000, 13], [1795026584000, 12], [1795026585000, 11], [1795026586000, 13], [1795026587000, 13], [1795026588000, 12], [1795026589000, 12], [1795026590000, 12], [1795026591000, 13], [1795026592000, 11], [1795026593000, 12], [1795026594000, 11], [1795026595000, 11], [1795026596000, 11], [1795026597000, 13], [1795026598000, 13], [1795026599000, 11], [1795026600000, 12], [1795026601000, 13], [1795026602000, 11], [1795026603000, 12], [1795026604000, 12], [1795026605000, 13], [1795026606000, 14], [1795026607000, 13], [1795026608000, 12], [1795026609000, 13], [1795026610000, 14], [1795026611000, 11], [1795026612000, 12], [1795026613000, 12], [1795026614000, 11], [1795026615000, 11], [1795026616000, 13], [1795026617000, null], [1795026618000, null], [1795026619000, null]],
+type : 'area',
+yAxis: 0,
+zIndex: 8
+},
+         {
+name: '75%',
+data: [[1795026467000, null], [1795026468000, 22], [1795026469000, 38], [1795026470000, 25], [1795026471000, 21], [1795026472000, 19], [1795026473000, 16], [1795026474000, 18], [1795026475000, 18], [1795026476000, 17], [1795026477000, 15], [1795026478000, 14], [1795026479000, 15], [1795026480000, 14], [1795026481000, 13], [1795026482000, 15], [1795026483000, 13], [1795026484000, 16], [1795026485000, 15], [1795026486000, 13], [1795026487000, 13], [1795026488000, 14], [1795026489000, 14], [1795026490000, 16], [1795026491000, 15], [1795026492000, 14], [1795026493000, 13], [1795026494000, 14], [1795026495000, 14], [1795026496000, 14], [1795026497000, 13], [1795026498000, 13], [1795026499000, 14], [1795026500000, 15], [1795026501000, 14], [1795026502000, 30], [1795026503000, 38824], [1795026504000, null], [1795026505000, null], [1795026506000, null], [1795026507000, null], [1795026508000, null], [1795026509000, null], [1795026510000, null], [1795026511000, null], [1795026512000, null], [1795026513000, null], [1795026514000, null], [1795026515000, null], [1795026516000, null], [1795026517000, null], [1795026518000, null], [1795026519000, null], [1795026520000, null], [1795026521000, null], [1795026522000, null], [1795026523000, null], [1795026524000, null], [1795026525000, null], [1795026526000, null], [1795026527000, null], [1795026528000, null], [1795026529000, null], [1795026530000, null], [1795026531000, null], [1795026532000, null], [1795026533000, null], [1795026534000, null], [1795026535000, null], [1795026536000, null], [1795026537000, null], [1795026538000, null], [1795026539000, null], [1795026540000, null], [1795026541000, 30], [1795026542000, 245], [1795026543000, 50], [1795026544000, 56], [1795026545000, 27], [1795026546000, 15], [1795026547000, 17], [1795026548000, 11], [1795026549000, 13], [1795026550000, 13], [1795026551000, 19], [1795026552000, 13], [1795026553000, 14], [1795026554000, 15], [1795026555000, 12], [1795026556000, 16], [1795026557000, 13], [1795026558000, 13], [1795026559000, 14], [1795026560000, 14], [1795026561000, 13], [1795026562000, 16], [1795026563000, 17], [1795026564000, 16], [1795026565000, 14], [1795026566000, 14], [1795026567000, 15], [1795026568000, 15], [1795026569000, 14], [1795026570000, 13], [1795026571000, 16], [1795026572000, 13], [1795026573000, 14], [1795026574000, 13], [1795026575000, 14], [1795026576000, 13], [1795026577000, 14], [1795026578000, 13], [1795026579000, 14], [1795026580000, 14], [1795026581000, 14], [1795026582000, 14], [1795026583000, 15], [1795026584000, 14], [1795026585000, 13], [1795026586000, 14], [1795026587000, 14], [1795026588000, 14], [1795026589000, 14], [1795026590000, 14], [1795026591000, 14], [1795026592000, 13], [1795026593000, 13], [1795026594000, 13], [1795026595000, 15], [1795026596000, 13], [1795026597000, 14], [1795026598000, 14], [1795026599000, 13], [1795026600000, 13], [1795026601000, 16], [1795026602000, 13], [1795026603000, 13], [1795026604000, 13], [1795026605000, 14], [1795026606000, 15], [1795026607000, 15], [1795026608000, 13], [1795026609000, 14], [1795026610000, 15], [1795026611000, 13], [1795026612000, 13], [1795026613000, 14], [1795026614000, 13], [1795026615000, 12], [1795026616000, 14], [1795026617000, null], [1795026618000, null], [1795026619000, null]],
+type : 'area',
+yAxis: 0,
+zIndex: 7
+},
+         {
+name: '80%',
+data: [[1795026467000, null], [1795026468000, 22], [1795026469000, 38], [1795026470000, 25], [1795026471000, 22], [1795026472000, 20], [1795026473000, 16], [1795026474000, 18], [1795026475000, 20], [1795026476000, 17], [1795026477000, 17], [1795026478000, 14], [1795026479000, 16], [1795026480000, 14], [1795026481000, 15], [1795026482000, 16], [1795026483000, 13], [1795026484000, 17], [1795026485000, 15], [1795026486000, 14], [1795026487000, 14], [1795026488000, 14], [1795026489000, 14], [1795026490000, 18], [1795026491000, 15], [1795026492000, 14], [1795026493000, 13], [1795026494000, 14], [1795026495000, 14], [1795026496000, 14], [1795026497000, 13], [1795026498000, 13], [1795026499000, 14], [1795026500000, 15], [1795026501000, 15], [1795026502000, 36], [1795026503000, 38824], [1795026504000, null], [1795026505000, null], [1795026506000, null], [1795026507000, null], [1795026508000, null], [1795026509000, null], [1795026510000, null], [1795026511000, null], [1795026512000, null], [1795026513000, null], [1795026514000, null], [1795026515000, null], [1795026516000, null], [1795026517000, null], [1795026518000, null], [1795026519000, null], [1795026520000, null], [1795026521000, null], [1795026522000, null], [1795026523000, null], [1795026524000, null], [1795026525000, null], [1795026526000, null], [1795026527000, null], [1795026528000, null], [1795026529000, null], [1795026530000, null], [1795026531000, null], [1795026532000, null], [1795026533000, null], [1795026534000, null], [1795026535000, null], [1795026536000, null], [1795026537000, null], [1795026538000, null], [1795026539000, null], [1795026540000, null], [1795026541000, 31], [1795026542000, 257], [1795026543000, 55], [1795026544000, 57], [1795026545000, 33], [1795026546000, 15], [1795026547000, 18], [1795026548000, 12], [1795026549000, 14], [1795026550000, 13], [1795026551000, 19], [1795026552000, 13], [1795026553000, 15], [1795026554000, 15], [1795026555000, 12], [1795026556000, 16], [1795026557000, 13], [1795026558000, 13], [1795026559000, 14], [1795026560000, 14], [1795026561000, 14], [1795026562000, 16], [1795026563000, 19], [1795026564000, 16], [1795026565000, 14], [1795026566000, 15], [1795026567000, 16], [1795026568000, 15], [1795026569000, 14], [1795026570000, 14], [1795026571000, 20], [1795026572000, 14], [1795026573000, 14], [1795026574000, 14], [1795026575000, 14], [1795026576000, 14], [1795026577000, 15], [1795026578000, 13], [1795026579000, 14], [1795026580000, 14], [1795026581000, 14], [1795026582000, 15], [1795026583000, 16], [1795026584000, 15], [1795026585000, 13], [1795026586000, 14], [1795026587000, 14], [1795026588000, 14], [1795026589000, 14], [1795026590000, 15], [1795026591000, 14], [1795026592000, 13], [1795026593000, 13], [1795026594000, 13], [1795026595000, 15], [1795026596000, 13], [1795026597000, 14], [1795026598000, 15], [1795026599000, 13], [1795026600000, 14], [1795026601000, 16], [1795026602000, 13], [1795026603000, 14], [1795026604000, 13], [1795026605000, 15], [1795026606000, 15], [1795026607000, 16], [1795026608000, 14], [1795026609000, 14], [1795026610000, 15], [1795026611000, 13], [1795026612000, 13], [1795026613000, 14], [1795026614000, 14], [1795026615000, 12], [1795026616000, 15], [1795026617000, null], [1795026618000, null], [1795026619000, null]],
+type : 'area',
+yAxis: 0,
+zIndex: 6
+},
+         {
+name: '85%',
+data: [[1795026467000, null], [1795026468000, 23], [1795026469000, 38], [1795026470000, 25], [1795026471000, 23], [1795026472000, 21], [1795026473000, 17], [1795026474000, 18], [1795026475000, 22], [1795026476000, 18], [1795026477000, 17], [1795026478000, 14], [1795026479000, 16], [1795026480000, 14], [1795026481000, 15], [1795026482000, 16], [1795026483000, 13], [1795026484000, 17], [1795026485000, 16], [1795026486000, 15], [1795026487000, 14], [1795026488000, 14], [1795026489000, 14], [1795026490000, 18], [1795026491000, 17], [1795026492000, 14], [1795026493000, 13], [1795026494000, 15], [1795026495000, 15], [1795026496000, 15], [1795026497000, 14], [1795026498000, 14], [1795026499000, 14], [1795026500000, 15], [1795026501000, 16], [1795026502000, 39], [1795026503000, 38824], [1795026504000, null], [1795026505000, null], [1795026506000, null], [1795026507000, null], [1795026508000, null], [1795026509000, null], [1795026510000, null], [1795026511000, null], [1795026512000, null], [1795026513000, null], [1795026514000, null], [1795026515000, null], [1795026516000, null], [1795026517000, null], [1795026518000, null], [1795026519000, null], [1795026520000, null], [1795026521000, null], [1795026522000, null], [1795026523000, null], [1795026524000, null], [1795026525000, null], [1795026526000, null], [1795026527000, null], [1795026528000, null], [1795026529000, null], [1795026530000, null], [1795026531000, null], [1795026532000, null], [1795026533000, null], [1795026534000, null], [1795026535000, null], [1795026536000, null], [1795026537000, null], [1795026538000, null], [1795026539000, null], [1795026540000, null], [1795026541000, 33], [1795026542000, 261], [1795026543000, 56], [1795026544000, 61], [1795026545000, 39], [1795026546000, 16], [1795026547000, 21], [1795026548000, 12], [1795026549000, 15], [1795026550000, 13], [1795026551000, 19], [1795026552000, 14], [1795026553000, 15], [1795026554000, 16], [1795026555000, 13], [1795026556000, 16], [1795026557000, 13], [1795026558000, 14], [1795026559000, 15], [1795026560000, 15], [1795026561000, 14], [1795026562000, 17], [1795026563000, 20], [1795026564000, 17], [1795026565000, 14], [1795026566000, 16], [1795026567000, 16], [1795026568000, 15], [1795026569000, 15], [1795026570000, 14], [1795026571000, 24], [1795026572000, 14], [1795026573000, 15], [1795026574000, 15], [1795026575000, 14], [1795026576000, 14], [1795026577000, 16], [1795026578000, 15], [1795026579000, 14], [1795026580000, 14], [1795026581000, 15], [1795026582000, 15], [1795026583000, 16], [1795026584000, 15], [1795026585000, 13], [1795026586000, 14], [1795026587000, 15], [1795026588000, 15], [1795026589000, 15], [1795026590000, 15], [1795026591000, 15], [1795026592000, 14], [1795026593000, 14], [1795026594000, 13], [1795026595000, 16], [1795026596000, 14], [1795026597000, 15], [1795026598000, 15], [1795026599000, 14], [1795026600000, 14], [1795026601000, 16], [1795026602000, 14], [1795026603000, 15], [1795026604000, 13], [1795026605000, 15], [1795026606000, 15], [1795026607000, 16], [1795026608000, 14], [1795026609000, 15], [1795026610000, 15], [1795026611000, 13], [1795026612000, 14], [1795026613000, 14], [1795026614000, 14], [1795026615000, 13], [1795026616000, 15], [1795026617000, null], [1795026618000, null], [1795026619000, null]],
+type : 'area',
+yAxis: 0,
+zIndex: 5
+},
+         {
+name: '90%',
+data: [[1795026467000, null], [1795026468000, 23], [1795026469000, 38], [1795026470000, 25], [1795026471000, 24], [1795026472000, 22], [1795026473000, 17], [1795026474000, 18], [1795026475000, 25], [1795026476000, 19], [1795026477000, 18], [1795026478000, 14], [1795026479000, 16], [1795026480000, 15], [1795026481000, 15], [1795026482000, 16], [1795026483000, 14], [1795026484000, 18], [1795026485000, 16], [1795026486000, 17], [1795026487000, 14], [1795026488000, 15], [1795026489000, 16], [1795026490000, 25], [1795026491000, 17], [1795026492000, 14], [1795026493000, 14], [1795026494000, 15], [1795026495000, 15], [1795026496000, 15], [1795026497000, 16], [1795026498000, 15], [1795026499000, 14], [1795026500000, 15], [1795026501000, 16], [1795026502000, 42], [1795026503000, 38824], [1795026504000, null], [1795026505000, null], [1795026506000, null], [1795026507000, null], [1795026508000, null], [1795026509000, null], [1795026510000, null], [1795026511000, null], [1795026512000, null], [1795026513000, null], [1795026514000, null], [1795026515000, null], [1795026516000, null], [1795026517000, null], [1795026518000, null], [1795026519000, null], [1795026520000, null], [1795026521000, null], [1795026522000, null], [1795026523000, null], [1795026524000, null], [1795026525000, null], [1795026526000, null], [1795026527000, null], [1795026528000, null], [1795026529000, null], [1795026530000, null], [1795026531000, null], [1795026532000, null], [1795026533000, null], [1795026534000, null], [1795026535000, null], [1795026536000, null], [1795026537000, null], [1795026538000, null], [1795026539000, null], [1795026540000, null], [1795026541000, 33], [1795026542000, 268], [1795026543000, 59], [1795026544000, 70], [1795026545000, 43], [1795026546000, 16], [1795026547000, 23], [1795026548000, 13], [1795026549000, 15], [1795026550000, 14], [1795026551000, 20], [1795026552000, 14], [1795026553000, 15], [1795026554000, 16], [1795026555000, 13], [1795026556000, 17], [1795026557000, 14], [1795026558000, 14], [1795026559000, 15], [1795026560000, 16], [1795026561000, 15], [1795026562000, 18], [1795026563000, 21], [1795026564000, 22], [1795026565000, 15], [1795026566000, 17], [1795026567000, 16], [1795026568000, 16], [1795026569000, 16], [1795026570000, 15], [1795026571000, 27], [1795026572000, 15], [1795026573000, 15], [1795026574000, 15], [1795026575000, 14], [1795026576000, 15], [1795026577000, 17], [1795026578000, 15], [1795026579000, 14], [1795026580000, 15], [1795026581000, 15], [1795026582000, 15], [1795026583000, 16], [1795026584000, 16], [1795026585000, 14], [1795026586000, 15], [1795026587000, 15], [1795026588000, 16], [1795026589000, 15], [1795026590000, 15], [1795026591000, 15], [1795026592000, 14], [1795026593000, 14], [1795026594000, 14], [1795026595000, 16], [1795026596000, 15], [1795026597000, 16], [1795026598000, 16], [1795026599000, 14], [1795026600000, 14], [1795026601000, 16], [1795026602000, 14], [1795026603000, 15], [1795026604000, 13], [1795026605000, 15], [1795026606000, 15], [1795026607000, 20], [1795026608000, 14], [1795026609000, 15], [1795026610000, 16], [1795026611000, 13], [1795026612000, 14], [1795026613000, 14], [1795026614000, 15], [1795026615000, 14], [1795026616000, 15], [1795026617000, null], [1795026618000, null], [1795026619000, null]],
+type : 'area',
+yAxis: 0,
+zIndex: 4
+},
+         {
+name: '95%',
+data: [[1795026467000, null], [1795026468000, 23], [1795026469000, 38], [1795026470000, 25], [1795026471000, 24], [1795026472000, 22], [1795026473000, 17], [1795026474000, 19], [1795026475000, 26], [1795026476000, 20], [1795026477000, 18], [1795026478000, 15], [1795026479000, 17], [1795026480000, 17], [1795026481000, 17], [1795026482000, 16], [1795026483000, 15], [1795026484000, 19], [1795026485000, 19], [1795026486000, 20], [1795026487000, 16], [1795026488000, 16], [1795026489000, 17], [1795026490000, 38], [1795026491000, 22], [1795026492000, 15], [1795026493000, 14], [1795026494000, 17], [1795026495000, 16], [1795026496000, 15], [1795026497000, 16], [1795026498000, 16], [1795026499000, 16], [1795026500000, 17], [1795026501000, 37], [1795026502000, 49], [1795026503000, 38824], [1795026504000, null], [1795026505000, null], [1795026506000, null], [1795026507000, null], [1795026508000, null], [1795026509000, null], [1795026510000, null], [1795026511000, null], [1795026512000, null], [1795026513000, null], [1795026514000, null], [1795026515000, null], [1795026516000, null], [1795026517000, null], [1795026518000, null], [1795026519000, null], [1795026520000, null], [1795026521000, null], [1795026522000, null], [1795026523000, null], [1795026524000, null], [1795026525000, null], [1795026526000, null], [1795026527000, null], [1795026528000, null], [1795026529000, null], [1795026530000, null], [1795026531000, null], [1795026532000, null], [1795026533000, null], [1795026534000, null], [1795026535000, null], [1795026536000, null], [1795026537000, null], [1795026538000, null], [1795026539000, null], [1795026540000, null], [1795026541000, 33], [1795026542000, 281], [1795026543000, 61], [1795026544000, 82], [1795026545000, 45], [1795026546000, 19], [1795026547000, 29], [1795026548000, 14], [1795026549000, 17], [1795026550000, 15], [1795026551000, 22], [1795026552000, 17], [1795026553000, 15], [1795026554000, 19], [1795026555000, 14], [1795026556000, 20], [1795026557000, 14], [1795026558000, 15], [1795026559000, 16], [1795026560000, 17], [1795026561000, 15], [1795026562000, 19], [1795026563000, 26], [1795026564000, 23], [1795026565000, 15], [1795026566000, 20], [1795026567000, 17], [1795026568000, 17], [1795026569000, 17], [1795026570000, 16], [1795026571000, 29], [1795026572000, 16], [1795026573000, 16], [1795026574000, 16], [1795026575000, 15], [1795026576000, 15], [1795026577000, 17], [1795026578000, 15], [1795026579000, 15], [1795026580000, 15], [1795026581000, 15], [1795026582000, 15], [1795026583000, 17], [1795026584000, 21], [1795026585000, 16], [1795026586000, 15], [1795026587000, 16], [1795026588000, 17], [1795026589000, 15], [1795026590000, 15], [1795026591000, 15], [1795026592000, 15], [1795026593000, 16], [1795026594000, 14], [1795026595000, 16], [1795026596000, 17], [1795026597000, 16], [1795026598000, 16], [1795026599000, 15], [1795026600000, 14], [1795026601000, 23], [1795026602000, 15], [1795026603000, 16], [1795026604000, 15], [1795026605000, 15], [1795026606000, 15], [1795026607000, 21], [1795026608000, 15], [1795026609000, 16], [1795026610000, 18], [1795026611000, 15], [1795026612000, 15], [1795026613000, 15], [1795026614000, 15], [1795026615000, 14], [1795026616000, 15], [1795026617000, null], [1795026618000, null], [1795026619000, null]],
+type : 'area',
+yAxis: 0,
+zIndex: 3
+},
+         {
+name: '99%',
+data: [[1795026467000, null], [1795026468000, 23], [1795026469000, 38], [1795026470000, 25], [1795026471000, 24], [1795026472000, 22], [1795026473000, 17], [1795026474000, 19], [1795026475000, 26], [1795026476000, 20], [1795026477000, 19], [1795026478000, 15], [1795026479000, 17], [1795026480000, 17], [1795026481000, 18], [1795026482000, 17], [1795026483000, 15], [1795026484000, 20], [1795026485000, 21], [1795026486000, 22], [1795026487000, 18], [1795026488000, 17], [1795026489000, 17], [1795026490000, 44], [1795026491000, 29], [1795026492000, 16], [1795026493000, 15], [1795026494000, 20], [1795026495000, 17], [1795026496000, 16], [1795026497000, 17], [1795026498000, 17], [1795026499000, 18], [1795026500000, 18], [1795026501000, 52], [1795026502000, 62], [1795026503000, 38824], [1795026504000, null], [1795026505000, null], [1795026506000, null], [1795026507000, null], [1795026508000, null], [1795026509000, null], [1795026510000, null], [1795026511000, null], [1795026512000, null], [1795026513000, null], [1795026514000, null], [1795026515000, null], [1795026516000, null], [1795026517000, null], [1795026518000, null], [1795026519000, null], [1795026520000, null], [1795026521000, null], [1795026522000, null], [1795026523000, null], [1795026524000, null], [1795026525000, null], [1795026526000, null], [1795026527000, null], [1795026528000, null], [1795026529000, null], [1795026530000, null], [1795026531000, null], [1795026532000, null], [1795026533000, null], [1795026534000, null], [1795026535000, null], [1795026536000, null], [1795026537000, null], [1795026538000, null], [1795026539000, null], [1795026540000, null], [1795026541000, 33], [1795026542000, 283], [1795026543000, 62], [1795026544000, 90], [1795026545000, 47], [1795026546000, 23], [1795026547000, 48], [1795026548000, 14], [1795026549000, 18], [1795026550000, 15], [1795026551000, 23], [1795026552000, 18], [1795026553000, 18], [1795026554000, 19], [1795026555000, 15], [1795026556000, 22], [1795026557000, 15], [1795026558000, 16], [1795026559000, 17], [1795026560000, 17], [1795026561000, 15], [1795026562000, 19], [1795026563000, 34], [1795026564000, 24], [1795026565000, 15], [1795026566000, 21], [1795026567000, 20], [1795026568000, 19], [1795026569000, 19], [1795026570000, 17], [1795026571000, 32], [1795026572000, 17], [1795026573000, 17], [1795026574000, 17], [1795026575000, 16], [1795026576000, 16], [1795026577000, 17], [1795026578000, 17], [1795026579000, 15], [1795026580000, 16], [1795026581000, 16], [1795026582000, 16], [1795026583000, 17], [1795026584000, 25], [1795026585000, 17], [1795026586000, 16], [1795026587000, 16], [1795026588000, 18], [1795026589000, 16], [1795026590000, 16], [1795026591000, 16], [1795026592000, 18], [1795026593000, 18], [1795026594000, 15], [1795026595000, 16], [1795026596000, 18], [1795026597000, 16], [1795026598000, 19], [1795026599000, 17], [1795026600000, 15], [1795026601000, 27], [1795026602000, 15], [1795026603000, 18], [1795026604000, 16], [1795026605000, 17], [1795026606000, 16], [1795026607000, 22], [1795026608000, 16], [1795026609000, 18], [1795026610000, 18], [1795026611000, 16], [1795026612000, 17], [1795026613000, 17], [1795026614000, 16], [1795026615000, 15], [1795026616000, 16], [1795026617000, null], [1795026618000, null], [1795026619000, null]],
+type : 'area',
+yAxis: 0,
+zIndex: 2
+},
+         {
+name: 'max',
+data: [[1795026467000, null], [1795026468000, 23], [1795026469000, 38], [1795026470000, 25], [1795026471000, 24], [1795026472000, 22], [1795026473000, 17], [1795026474000, 19], [1795026475000, 26], [1795026476000, 20], [1795026477000, 19], [1795026478000, 15], [1795026479000, 17], [1795026480000, 17], [1795026481000, 18], [1795026482000, 17], [1795026483000, 15], [1795026484000, 20], [1795026485000, 21], [1795026486000, 22], [1795026487000, 18], [1795026488000, 17], [1795026489000, 17], [1795026490000, 44], [1795026491000, 29], [1795026492000, 16], [1795026493000, 15], [1795026494000, 20], [1795026495000, 17], [1795026496000, 16], [1795026497000, 17], [1795026498000, 17], [1795026499000, 18], [1795026500000, 18], [1795026501000, 52], [1795026502000, 62], [1795026503000, 38824], [1795026504000, null], [1795026505000, null], [1795026506000, null], [1795026507000, null], [1795026508000, null], [1795026509000, null], [1795026510000, null], [1795026511000, null], [1795026512000, null], [1795026513000, null], [1795026514000, null], [1795026515000, null], [1795026516000, null], [1795026517000, null], [1795026518000, null], [1795026519000, null], [1795026520000, null], [1795026521000, null], [1795026522000, null], [1795026523000, null], [1795026524000, null], [1795026525000, null], [1795026526000, null], [1795026527000, null], [1795026528000, null], [1795026529000, null], [1795026530000, null], [1795026531000, null], [1795026532000, null], [1795026533000, null], [1795026534000, null], [1795026535000, null], [1795026536000, null], [1795026537000, null], [1795026538000, null], [1795026539000, null], [1795026540000, null], [1795026541000, 33], [1795026542000, 283], [1795026543000, 62], [1795026544000, 90], [1795026545000, 47], [1795026546000, 23], [1795026547000, 48], [1795026548000, 14], [1795026549000, 18], [1795026550000, 15], [1795026551000, 23], [1795026552000, 18], [1795026553000, 18], [1795026554000, 19], [1795026555000, 15], [1795026556000, 22], [1795026557000, 15], [1795026558000, 16], [1795026559000, 17], [1795026560000, 17], [1795026561000, 15], [1795026562000, 19], [1795026563000, 34], [1795026564000, 24], [1795026565000, 15], [1795026566000, 21], [1795026567000, 20], [1795026568000, 19], [1795026569000, 19], [1795026570000, 17], [1795026571000, 32], [1795026572000, 17], [1795026573000, 17], [1795026574000, 17], [1795026575000, 16], [1795026576000, 16], [1795026577000, 17], [1795026578000, 17], [1795026579000, 15], [1795026580000, 16], [1795026581000, 16], [1795026582000, 16], [1795026583000, 17], [1795026584000, 25], [1795026585000, 17], [1795026586000, 16], [1795026587000, 16], [1795026588000, 18], [1795026589000, 16], [1795026590000, 16], [1795026591000, 16], [1795026592000, 18], [1795026593000, 18], [1795026594000, 15], [1795026595000, 16], [1795026596000, 18], [1795026597000, 16], [1795026598000, 19], [1795026599000, 17], [1795026600000, 15], [1795026601000, 27], [1795026602000, 15], [1795026603000, 18], [1795026604000, 16], [1795026605000, 17], [1795026606000, 16], [1795026607000, 22], [1795026608000, 16], [1795026609000, 18], [1795026610000, 18], [1795026611000, 16], [1795026612000, 17], [1795026613000, 17], [1795026614000, 16], [1795026615000, 15], [1795026616000, 16], [1795026617000, null], [1795026618000, null], [1795026619000, null]],
+type : 'area',
+yAxis: 0,
+zIndex: 1
+}
+  ]
+});
+
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'requestsContainerId',
+    zoomType: 'x',
+    marginBottom: 60
+  },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: -65
+  },
+  title: {
+    text: '\x3cspan class=\"chart_title\"\x3eNumber of requests per second\x3c/span\x3e',
+    useHTML: true
+  },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold'
+      },
+      states: {
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black', fontWeight: 'bold' }
+        },
+        select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    labelStyle: { color: '#8b897d' },
+    buttons: [
+      { type: 'minute', count: 1, text: '1m' },
+      { type: 'minute', count: 10, text: '10m' },
+      { type: 'hour', count: 1, text: '1h' },
+      { type: 'all', count: 1, text: 'All' }
+    ],
+    selected: 3,
+    inputEnabled: false
+  },
+  plotOptions: {
+    series: {
+      dataGrouping: { enabled: false }
+    },
+    area: {
+      stacking: 'normal'
+    }
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    minRange: 10000 // can't zoom in below 10 seconds
+  },
+  yAxis:[
+    {
+      min: 0,
+      title: { text: 'Number of requests' },
+      opposite: false,
+      reversedStacks: false
+    }
+  ],
+  series: [
+    {
+color: '#5E7BE2',
+name: 'All',
+data: [[1795026467000, 0], [1795026468000, 3], [1795026469000, 2], [1795026470000, 2], [1795026471000, 5], [1795026472000, 4], [1795026473000, 3], [1795026474000, 6], [1795026475000, 6], [1795026476000, 6], [1795026477000, 12], [1795026478000, 10], [1795026479000, 7], [1795026480000, 10], [1795026481000, 12], [1795026482000, 11], [1795026483000, 10], [1795026484000, 17], [1795026485000, 15], [1795026486000, 18], [1795026487000, 17], [1795026488000, 15], [1795026489000, 18], [1795026490000, 17], [1795026491000, 23], [1795026492000, 14], [1795026493000, 25], [1795026494000, 23], [1795026495000, 24], [1795026496000, 19], [1795026497000, 24], [1795026498000, 25], [1795026499000, 25], [1795026500000, 28], [1795026501000, 18], [1795026502000, 24], [1795026503000, 2], [1795026504000, 0], [1795026505000, 0], [1795026506000, 0], [1795026507000, 0], [1795026508000, 0], [1795026509000, 0], [1795026510000, 0], [1795026511000, 0], [1795026512000, 0], [1795026513000, 0], [1795026514000, 0], [1795026515000, 0], [1795026516000, 0], [1795026517000, 0], [1795026518000, 0], [1795026519000, 0], [1795026520000, 0], [1795026521000, 0], [1795026522000, 0], [1795026523000, 0], [1795026524000, 0], [1795026525000, 0], [1795026526000, 0], [1795026527000, 0], [1795026528000, 0], [1795026529000, 0], [1795026530000, 0], [1795026531000, 0], [1795026532000, 0], [1795026533000, 0], [1795026534000, 0], [1795026535000, 0], [1795026536000, 0], [1795026537000, 0], [1795026538000, 0], [1795026539000, 0], [1795026540000, 0], [1795026541000, 3], [1795026542000, 29], [1795026543000, 18], [1795026544000, 24], [1795026545000, 21], [1795026546000, 23], [1795026547000, 28], [1795026548000, 22], [1795026549000, 27], [1795026550000, 24], [1795026551000, 17], [1795026552000, 25], [1795026553000, 24], [1795026554000, 28], [1795026555000, 21], [1795026556000, 22], [1795026557000, 21], [1795026558000, 18], [1795026559000, 28], [1795026560000, 25], [1795026561000, 22], [1795026562000, 25], [1795026563000, 24], [1795026564000, 22], [1795026565000, 18], [1795026566000, 25], [1795026567000, 22], [1795026568000, 27], [1795026569000, 24], [1795026570000, 21], [1795026571000, 24], [1795026572000, 26], [1795026573000, 23], [1795026574000, 26], [1795026575000, 21], [1795026576000, 24], [1795026577000, 28], [1795026578000, 23], [1795026579000, 23], [1795026580000, 26], [1795026581000, 23], [1795026582000, 27], [1795026583000, 22], [1795026584000, 25], [1795026585000, 19], [1795026586000, 24], [1795026587000, 26], [1795026588000, 24], [1795026589000, 27], [1795026590000, 22], [1795026591000, 22], [1795026592000, 28], [1795026593000, 25], [1795026594000, 24], [1795026595000, 23], [1795026596000, 29], [1795026597000, 18], [1795026598000, 29], [1795026599000, 21], [1795026600000, 24], [1795026601000, 26], [1795026602000, 25], [1795026603000, 21], [1795026604000, 23], [1795026605000, 25], [1795026606000, 22], [1795026607000, 24], [1795026608000, 27], [1795026609000, 22], [1795026610000, 23], [1795026611000, 24], [1795026612000, 25], [1795026613000, 23], [1795026614000, 25], [1795026615000, 18], [1795026616000, 19], [1795026617000, 0], [1795026618000, 0], [1795026619000, 0]],
+tooltip: { valueDecimals: 0 }
+,type: 'area'
+}
+  ]
+});
+
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'responsesContainerId',
+    zoomType: 'x',
+    marginBottom: 60
+  },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: -65
+  },
+  title: {
+    text: '\x3cspan class=\"chart_title\"\x3eNumber of responses per second\x3c/span\x3e',
+    useHTML: true
+  },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold'
+      },
+      states: {
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black', fontWeight: 'bold' }
+        },
+        select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    labelStyle: { color: '#8b897d' },
+    buttons: [
+      { type: 'minute', count: 1, text: '1m' },
+      { type: 'minute', count: 10, text: '10m' },
+      { type: 'hour', count: 1, text: '1h' },
+      { type: 'all', count: 1, text: 'All' }
+    ],
+    selected: 3,
+    inputEnabled: false
+  },
+  plotOptions: {
+    series: {
+      dataGrouping: { enabled: false }
+    },
+    area: {
+      stacking: 'normal'
+    }
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    minRange: 10000 // can't zoom in below 10 seconds
+  },
+  yAxis:[
+    {
+      min: 0,
+      title: { text: 'Number of responses' },
+      opposite: false,
+      reversedStacks: false
+    }
+  ],
+  series: [
+    {
+color: '#5E7BE2',
+name: 'All',
+data: [[1795026467000, 0], [1795026468000, 3], [1795026469000, 1], [1795026470000, 3], [1795026471000, 5], [1795026472000, 4], [1795026473000, 3], [1795026474000, 6], [1795026475000, 6], [1795026476000, 6], [1795026477000, 11], [1795026478000, 11], [1795026479000, 7], [1795026480000, 10], [1795026481000, 12], [1795026482000, 11], [1795026483000, 10], [1795026484000, 17], [1795026485000, 15], [1795026486000, 18], [1795026487000, 17], [1795026488000, 14], [1795026489000, 18], [1795026490000, 18], [1795026491000, 23], [1795026492000, 14], [1795026493000, 25], [1795026494000, 23], [1795026495000, 23], [1795026496000, 20], [1795026497000, 24], [1795026498000, 25], [1795026499000, 24], [1795026500000, 29], [1795026501000, 18], [1795026502000, 24], [1795026503000, 1], [1795026504000, 0], [1795026505000, 0], [1795026506000, 0], [1795026507000, 0], [1795026508000, 0], [1795026509000, 0], [1795026510000, 0], [1795026511000, 0], [1795026512000, 0], [1795026513000, 0], [1795026514000, 0], [1795026515000, 0], [1795026516000, 0], [1795026517000, 0], [1795026518000, 0], [1795026519000, 0], [1795026520000, 0], [1795026521000, 0], [1795026522000, 0], [1795026523000, 0], [1795026524000, 0], [1795026525000, 0], [1795026526000, 0], [1795026527000, 0], [1795026528000, 0], [1795026529000, 0], [1795026530000, 0], [1795026531000, 0], [1795026532000, 0], [1795026533000, 0], [1795026534000, 0], [1795026535000, 0], [1795026536000, 0], [1795026537000, 0], [1795026538000, 0], [1795026539000, 0], [1795026540000, 0], [1795026541000, 4], [1795026542000, 29], [1795026543000, 17], [1795026544000, 25], [1795026545000, 20], [1795026546000, 24], [1795026547000, 26], [1795026548000, 21], [1795026549000, 30], [1795026550000, 24], [1795026551000, 17], [1795026552000, 25], [1795026553000, 24], [1795026554000, 28], [1795026555000, 21], [1795026556000, 22], [1795026557000, 21], [1795026558000, 18], [1795026559000, 28], [1795026560000, 24], [1795026561000, 23], [1795026562000, 24], [1795026563000, 24], [1795026564000, 23], [1795026565000, 18], [1795026566000, 25], [1795026567000, 22], [1795026568000, 27], [1795026569000, 23], [1795026570000, 22], [1795026571000, 24], [1795026572000, 26], [1795026573000, 23], [1795026574000, 26], [1795026575000, 20], [1795026576000, 25], [1795026577000, 28], [1795026578000, 22], [1795026579000, 24], [1795026580000, 25], [1795026581000, 24], [1795026582000, 26], [1795026583000, 23], [1795026584000, 25], [1795026585000, 18], [1795026586000, 25], [1795026587000, 26], [1795026588000, 24], [1795026589000, 27], [1795026590000, 22], [1795026591000, 22], [1795026592000, 28], [1795026593000, 25], [1795026594000, 24], [1795026595000, 23], [1795026596000, 28], [1795026597000, 19], [1795026598000, 29], [1795026599000, 21], [1795026600000, 24], [1795026601000, 26], [1795026602000, 25], [1795026603000, 21], [1795026604000, 23], [1795026605000, 25], [1795026606000, 22], [1795026607000, 22], [1795026608000, 29], [1795026609000, 22], [1795026610000, 23], [1795026611000, 24], [1795026612000, 24], [1795026613000, 22], [1795026614000, 27], [1795026615000, 17], [1795026616000, 20], [1795026617000, 0], [1795026618000, 0], [1795026619000, 0]],
+tooltip: { valueDecimals: 0 }
+
+},
+{
+color: '#68b65c',
+name: 'OK',
+data: [[1795026467000, 0], [1795026468000, 3], [1795026469000, 1], [1795026470000, 3], [1795026471000, 5], [1795026472000, 4], [1795026473000, 3], [1795026474000, 6], [1795026475000, 6], [1795026476000, 6], [1795026477000, 11], [1795026478000, 11], [1795026479000, 7], [1795026480000, 10], [1795026481000, 12], [1795026482000, 11], [1795026483000, 10], [1795026484000, 17], [1795026485000, 15], [1795026486000, 18], [1795026487000, 17], [1795026488000, 14], [1795026489000, 18], [1795026490000, 18], [1795026491000, 23], [1795026492000, 14], [1795026493000, 25], [1795026494000, 23], [1795026495000, 23], [1795026496000, 20], [1795026497000, 24], [1795026498000, 25], [1795026499000, 24], [1795026500000, 29], [1795026501000, 18], [1795026502000, 24], [1795026503000, 1], [1795026504000, 0], [1795026505000, 0], [1795026506000, 0], [1795026507000, 0], [1795026508000, 0], [1795026509000, 0], [1795026510000, 0], [1795026511000, 0], [1795026512000, 0], [1795026513000, 0], [1795026514000, 0], [1795026515000, 0], [1795026516000, 0], [1795026517000, 0], [1795026518000, 0], [1795026519000, 0], [1795026520000, 0], [1795026521000, 0], [1795026522000, 0], [1795026523000, 0], [1795026524000, 0], [1795026525000, 0], [1795026526000, 0], [1795026527000, 0], [1795026528000, 0], [1795026529000, 0], [1795026530000, 0], [1795026531000, 0], [1795026532000, 0], [1795026533000, 0], [1795026534000, 0], [1795026535000, 0], [1795026536000, 0], [1795026537000, 0], [1795026538000, 0], [1795026539000, 0], [1795026540000, 0], [1795026541000, 4], [1795026542000, 29], [1795026543000, 17], [1795026544000, 25], [1795026545000, 20], [1795026546000, 24], [1795026547000, 26], [1795026548000, 21], [1795026549000, 30], [1795026550000, 24], [1795026551000, 17], [1795026552000, 25], [1795026553000, 24], [1795026554000, 28], [1795026555000, 21], [1795026556000, 22], [1795026557000, 21], [1795026558000, 18], [1795026559000, 28], [1795026560000, 24], [1795026561000, 23], [1795026562000, 24], [1795026563000, 24], [1795026564000, 23], [1795026565000, 18], [1795026566000, 25], [1795026567000, 22], [1795026568000, 27], [1795026569000, 23], [1795026570000, 22], [1795026571000, 24], [1795026572000, 26], [1795026573000, 23], [1795026574000, 26], [1795026575000, 20], [1795026576000, 25], [1795026577000, 28], [1795026578000, 22], [1795026579000, 24], [1795026580000, 25], [1795026581000, 24], [1795026582000, 26], [1795026583000, 23], [1795026584000, 25], [1795026585000, 18], [1795026586000, 25], [1795026587000, 26], [1795026588000, 24], [1795026589000, 27], [1795026590000, 22], [1795026591000, 22], [1795026592000, 28], [1795026593000, 25], [1795026594000, 24], [1795026595000, 23], [1795026596000, 28], [1795026597000, 19], [1795026598000, 29], [1795026599000, 21], [1795026600000, 24], [1795026601000, 26], [1795026602000, 25], [1795026603000, 21], [1795026604000, 23], [1795026605000, 25], [1795026606000, 22], [1795026607000, 22], [1795026608000, 29], [1795026609000, 22], [1795026610000, 23], [1795026611000, 24], [1795026612000, 24], [1795026613000, 22], [1795026614000, 27], [1795026615000, 17], [1795026616000, 20], [1795026617000, 0], [1795026618000, 0], [1795026619000, 0]],
+tooltip: { valueDecimals: 0 }
+,type: 'area'
+},
+{
+color: '#f15b4f',
+name: 'KO',
+data: [[1795026467000, 0], [1795026468000, 0], [1795026469000, 0], [1795026470000, 0], [1795026471000, 0], [1795026472000, 0], [1795026473000, 0], [1795026474000, 0], [1795026475000, 0], [1795026476000, 0], [1795026477000, 0], [1795026478000, 0], [1795026479000, 0], [1795026480000, 0], [1795026481000, 0], [1795026482000, 0], [1795026483000, 0], [1795026484000, 0], [1795026485000, 0], [1795026486000, 0], [1795026487000, 0], [1795026488000, 0], [1795026489000, 0], [1795026490000, 0], [1795026491000, 0], [1795026492000, 0], [1795026493000, 0], [1795026494000, 0], [1795026495000, 0], [1795026496000, 0], [1795026497000, 0], [1795026498000, 0], [1795026499000, 0], [1795026500000, 0], [1795026501000, 0], [1795026502000, 0], [1795026503000, 0], [1795026504000, 0], [1795026505000, 0], [1795026506000, 0], [1795026507000, 0], [1795026508000, 0], [1795026509000, 0], [1795026510000, 0], [1795026511000, 0], [1795026512000, 0], [1795026513000, 0], [1795026514000, 0], [1795026515000, 0], [1795026516000, 0], [1795026517000, 0], [1795026518000, 0], [1795026519000, 0], [1795026520000, 0], [1795026521000, 0], [1795026522000, 0], [1795026523000, 0], [1795026524000, 0], [1795026525000, 0], [1795026526000, 0], [1795026527000, 0], [1795026528000, 0], [1795026529000, 0], [1795026530000, 0], [1795026531000, 0], [1795026532000, 0], [1795026533000, 0], [1795026534000, 0], [1795026535000, 0], [1795026536000, 0], [1795026537000, 0], [1795026538000, 0], [1795026539000, 0], [1795026540000, 0], [1795026541000, 0], [1795026542000, 0], [1795026543000, 0], [1795026544000, 0], [1795026545000, 0], [1795026546000, 0], [1795026547000, 0], [1795026548000, 0], [1795026549000, 0], [1795026550000, 0], [1795026551000, 0], [1795026552000, 0], [1795026553000, 0], [1795026554000, 0], [1795026555000, 0], [1795026556000, 0], [1795026557000, 0], [1795026558000, 0], [1795026559000, 0], [1795026560000, 0], [1795026561000, 0], [1795026562000, 0], [1795026563000, 0], [1795026564000, 0], [1795026565000, 0], [1795026566000, 0], [1795026567000, 0], [1795026568000, 0], [1795026569000, 0], [1795026570000, 0], [1795026571000, 0], [1795026572000, 0], [1795026573000, 0], [1795026574000, 0], [1795026575000, 0], [1795026576000, 0], [1795026577000, 0], [1795026578000, 0], [1795026579000, 0], [1795026580000, 0], [1795026581000, 0], [1795026582000, 0], [1795026583000, 0], [1795026584000, 0], [1795026585000, 0], [1795026586000, 0], [1795026587000, 0], [1795026588000, 0], [1795026589000, 0], [1795026590000, 0], [1795026591000, 0], [1795026592000, 0], [1795026593000, 0], [1795026594000, 0], [1795026595000, 0], [1795026596000, 0], [1795026597000, 0], [1795026598000, 0], [1795026599000, 0], [1795026600000, 0], [1795026601000, 0], [1795026602000, 0], [1795026603000, 0], [1795026604000, 0], [1795026605000, 0], [1795026606000, 0], [1795026607000, 0], [1795026608000, 0], [1795026609000, 0], [1795026610000, 0], [1795026611000, 0], [1795026612000, 0], [1795026613000, 0], [1795026614000, 0], [1795026615000, 0], [1795026616000, 0], [1795026617000, 0], [1795026618000, 0], [1795026619000, 0]],
+tooltip: { valueDecimals: 0 }
+,type: 'area'
+},
+{
+type: 'pie',
+name: 'Distribution',
+data: [
+  {name: 'OK', y: 2276, color: '#68b65c'},
+  {name: 'KO', y: 0, color: '#f15b4f'}
+],
+center: ['87.37%', -40], // relative to the plot width, so it follows the chart width
+size: 70,
+showInLegend: false,
+dataLabels: { enabled: false },
+dataGrouping: { enabled: false }
+}
+  ]
+});
+
+new Highcharts.Chart({
+  chart: {
+    renderTo: 'responseTimeScatterContainerId',
+    type: 'scatter',
+    zoomType: 'xy',
+    marginBottom: 90
+  },
+  xAxis: {
+    title: {
+      enabled: true,
+      text: 'Global number of requests per second',
+      style: { fontWeight: 'bold' }
+    },
+    startOnTick: true,
+    endOnTick: true,
+    showLastLabel: true,
+    min: 0
+  },
+  title: {
+    text: '\x3cspan class=\"chart_title\"\x3eResponse Time against Global Throughput\x3c/span\x3e',
+    useHTML: true
+  },
+  yAxis: {
+    min: 0,
+    title: { text: 'Response Time (ms)' }
+  },
+  tooltip: {
+    formatter: function() {
+         return ''+ this.y +' ms at ' + this.x + ' allreq/s';
+    }
+  },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: 0
+  },
+  plotOptions: {
+    scatter: {
+      marker: {
+        radius: 3,
+        states: {
+          hover: {
+            enabled: true,
+            lineColor: 'rgb(100,100,100)'
+          }
+        }
+      },
+      states: {
+        hover: {
+          marker: { enabled: false }
+        }
+      }
+    }
+  },
+  series: [
+	  {
+type: 'scatter',
+color: '#68b65c',
+name: 'OK',
+data: [
+[8,38],[11,23],[14,25],[18,17],[19,38824],[23,22],[25,24],[33,26],[38,20],[40,19],[44,33],[48,17],[52,18],[54,15],[55,17],[60,17],[70,16],[74,19],[75,15],[85,20],[90,16],[90,16],[91,19],[93,17],[95,15],[103,61],[104,38],[106,14],[110,16],[111,16],[111,14],[111,15],[111,14],[112,15],[114,22],[115,15],[115,15],[115,15],[116,16],[116,21],[117,14],[117,17],[117,15],[118,17],[118,16],[119,16],[120,15],[120,15],[121,14],[121,20],[121,15],[122,37],[122,19],[122,16],[123,82],[123,17],[123,14],[123,15],[124,16],[124,15],[125,281],[125,45],[125,29],[125,15],[125,15],[126,15],[127,16],[127,26],[127,15],[127,15],[127,14],[127,15],[128,15],[128,15],[129,15],[129,15],[129,17],[130,15],[130,16],[130,22],[130,15],[131,29],[131,15],[132,17],[132,17],[132,23],[132,17],[132,17],[132,16],[132,15],[133,15],[134,16],[134,18],[135,16],[135,16],[135,16],[136,19],[137,49],[137,20],[137,21],[140,17],[140,15],[141,16],[143,23],[143,15],[144,15],[144,17],[145,17],[146,17],[146,16],[147,19],[148,16]
+]},
+	  {
+type: 'scatter',
+color: '#f15b4f',
+name: 'KO',
+data: [
+
+]}
+	]
+});
+
+    });
+</script>
+</div>
+</body>
+</html>

@@ -1,6 +1,5 @@
 package pl.databucket.perf;
 
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import io.gatling.javaapi.core.ChainBuilder;
 import io.gatling.javaapi.core.ScenarioBuilder;
 import io.gatling.javaapi.core.Session;
@@ -62,11 +61,11 @@ public final class Scenarios {
         }
     };
 
-    public static ScenarioBuilder byName(String name) {
+    public static ScenarioBuilder byName(String name, Filters filters) {
         return switch (name) {
-            case "create" -> user("create", create());
-            case "search" -> user("search", search());
-            case "delete" -> user("delete", delete());
+            case "create" -> user("create", create(filters));
+            case "search" -> user("search", search(filters));
+            case "delete" -> user("delete", delete(filters));
             default -> throw new IllegalArgumentException("Unknown scenario in mix: '" + name + "' (create, search, delete)");
         };
     }
@@ -89,12 +88,13 @@ public final class Scenarios {
 
     // ---- create
 
-    private static ChainBuilder create() {
+    private static ChainBuilder create(Filters filters) {
         return exec(authorized(http("create 1. insert a user (reserved)").post(DATA)
                 .body(StringBody(session -> {
                     Map<String, Object> row = new LinkedHashMap<>();
                     row.put("properties", TestUsers.created(ThreadLocalRandom.current().nextLong(1, 1_000_000_000L)));
                     row.put("reserved", true);
+                    if (filters.createdTagId() != null) row.put("tagId", filters.createdTagId());
                     return json(row);
                 }))
                 .check(status().is(201), jsonPath("$.id").saveAs("id"))))
@@ -106,14 +106,10 @@ public final class Scenarios {
 
     // ---- search
 
-    private static ChainBuilder search() {
-        // only the rows of prepareData: the rows created during the test belong to the scenarios create and delete
-        ArrayNode rules = RuleSets.get(PerfConfig.RULES).deepCopy();
-        rules.addArray().add("$.origin").add("==").addNull();
-        String body = json(Map.of("rules", rules));
-        return exec(authorized(http("search 1. find and reserve: " + PerfConfig.RULES)
+    private static ChainBuilder search(Filters filters) {
+        return exec(authorized(http("search 1. find and reserve: " + filters.name())
                 .post(DATA + "/reserve?limit=1&sort=" + PerfConfig.SORT)
-                .body(StringBody(body))
+                .body(StringBody(filters.searchBody()))
                 .check(status().is(200), jsonPath("$.data[0].id").saveAs("id"))))
                 .exec(delay())
                 .exec(modify("search 3. modify", 1))
@@ -123,13 +119,10 @@ public final class Scenarios {
 
     // ---- delete
 
-    /** Users created by the scenario create and released by it (finished): never more deleted than created. */
-    private static final String CREATED_AND_FINISHED = json(Map.of("rules", List.of(
-            List.of("$.origin", "==", TestUsers.CREATED), List.of("reserved", "==", false))));
-
-    private static ChainBuilder delete() {
+    /** Finds users created by the scenario create and released by it (finished): never more deleted than created. */
+    private static ChainBuilder delete(Filters filters) {
         return exec(authorized(http("delete 1. find created users").post(DATA + "/get?limit=20")
-                .body(StringBody(CREATED_AND_FINISHED))
+                .body(StringBody(filters.deleteBody()))
                 .check(status().is(200), jsonPath("$.data[*].id").findAll().optional().saveAs("ids"))))
                 .doIfOrElse(session -> session.contains("ids")).then(
                         exec(session -> {

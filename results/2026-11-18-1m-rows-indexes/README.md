@@ -7,6 +7,10 @@ rows under a mixed load, and is `plan_cache_mode = force_custom_plan` needed for
 throughput (59 → 113 requests/s)**. `force_custom_plan` changed nothing in this load (151 ms); the generic-plan problem
 seen earlier (an `AND` of two properties with `LIMIT/OFFSET` in `/get`) didn't show up here.
 
+> **Repeated** in [2026-11-18-1m-rows-tags](../2026-11-18-1m-rows-tags/README.md) with `VACUUM FULL` before every run:
+> the table had many dead rows here, which made the reservation slower (B: p95 135 ms, after `VACUUM FULL` 50 ms). The
+> conclusions about the indexes stand.
+
 ## Setup
 
 - Databucket 3.16.2 (master 9019098), the docker compose of databucket-server on one laptop (14 CPUs; Databucket,

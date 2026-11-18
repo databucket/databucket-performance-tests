@@ -18,9 +18,11 @@ import static io.gatling.javaapi.http.HttpDsl.http;
  */
 public class DatabucketSimulation extends Simulation {
 
+    private final Filters filters = Filters.fromConfig();
+
     {
         System.out.println(PerfConfig.describe());
-        System.out.println("Rules of search: " + PerfConfig.RULES + " - " + RuleSets.description(PerfConfig.RULES));
+        System.out.println("Filter: " + PerfConfig.FILTER + ", search " + filters.searchBody() + ", delete " + filters.deleteBody());
 
         List<PopulationBuilder> populations = new ArrayList<>();
         int assigned = 0;
@@ -32,7 +34,7 @@ public class DatabucketSimulation extends Simulation {
             assigned += users;
             System.out.println("  " + mix.get(i).getKey() + ": " + users + " users");
             if (users > 0)
-                populations.add(Scenarios.byName(mix.get(i).getKey())
+                populations.add(Scenarios.byName(mix.get(i).getKey(), filters)
                         .injectOpen(rampUsers(users).during(PerfConfig.RAMP_UP)));
         }
         if (PerfConfig.USERS > PerfConfig.TESTERS)
@@ -57,7 +59,8 @@ public class DatabucketSimulation extends Simulation {
             java.nio.file.Files.createDirectories(file.getParent());
             java.nio.file.Files.writeString(file, "Started " + java.time.LocalDateTime.now().withNano(0) + "\n"
                     + PerfConfig.describe().replace(" | ", "\n") + "\n"
-                    + "rules " + PerfConfig.RULES + " = " + RuleSets.get(PerfConfig.RULES) + ", sort " + PerfConfig.SORT + "\n");
+                    + "search " + filters.searchBody() + ", sort " + PerfConfig.SORT + "\n"
+                    + "delete " + filters.deleteBody() + "\n");
         } catch (java.io.IOException e) {
             System.out.println("Can't write the settings of the run: " + e.getMessage());
         }
