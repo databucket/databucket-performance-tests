@@ -19,10 +19,10 @@ tasks.withType<JavaCompile>().configureEach {
 
 // Settings of the tests: -Pname=value (see README and src/gatling/java/pl/databucket/perf/PerfConfig.java)
 val settings = listOf(
-    "baseUrl", "user", "password", "project", "bucket",
-    "users", "rampUp", "duration", "delayMin", "delayMax",
+    "baseUrl", "project", "bucket", "admin", "testers", "testerPrefix", "password",
+    "users", "rampUp", "duration", "startJitter", "mix", "delayMin", "delayMax",
     "rules", "sort", "p95", "maxFailedPercent",
-    "superUser", "superPassword", "rows", "history",
+    "superUser", "superPassword", "rows", "history", "reservedPercent",
 )
 
 fun forwardedSettings(): Map<String, Any> =
@@ -35,7 +35,7 @@ tasks.withType<io.gatling.gradle.GatlingRunTask>().configureEach {
 // Creates the project, its user and the bucket with test data (idempotent): ./gradlew prepareData -Prows=100000
 tasks.register<JavaExec>("prepareData") {
     group = "gatling"
-    description = "Creates the test project, user and bucket and fills the bucket up to -Prows rows"
+    description = "Creates the project, admin, tester accounts and bucket, fills it up to -Prows rows, reserves -PreservedPercent"
     classpath = sourceSets["gatling"].runtimeClasspath
     mainClass = "pl.databucket.perf.setup.PrepareData"
     systemProperties(forwardedSettings())
