@@ -21,7 +21,7 @@ tasks.withType<JavaCompile>().configureEach {
 val settings = listOf(
     "baseUrl", "project", "bucket", "admin", "testers", "testerPrefix", "password",
     "users", "rampUp", "duration", "startJitter", "mix", "delayMin", "delayMax",
-    "filter", "tags", "tag", "rules", "sort", "p95", "maxFailedPercent",
+    "filter", "tags", "tag", "rules", "sort", "countAvailable", "p95", "maxFailedPercent",
     "superUser", "superPassword", "rows", "history", "reservedPercent",
 )
 

@@ -113,7 +113,9 @@ A rule set must match more free rows than there are search users, otherwise rese
 - `-Prows` users (by the API, 1000 per call; ~10 s per 100k locally), as in `TestUsers.java`: login, email, status
   ACTIVE 60 % / NEW 10 % / BLOCKED 15 % / INACTIVE 15 %, type PREMIUM 20 %, one of six countries, age 18-79,
   group (5000 groups), two roles,
-- `-PreservedPercent` (20) of them reserved by the admin at the start: not available to the testers.
+- `-PreservedPercent` (20) of them reserved by the admin at the start: not available to the testers,
+- clean-up: rows created by earlier runs deleted, rows left reserved by testers released (run prepareData before every
+  measured run, so they all start from the same state; add `VACUUM FULL ANALYZE` of the table for the same physical state).
 
 ## Settings
 
@@ -131,6 +133,7 @@ A rule set must match more free rows than there are search users, otherwise rese
 | `delayMin`, `delayMax` (500, 2000) | random pause between the steps, ms |
 | `filter` (`properties`), `tag` (`perf-tag-03`) | rules on properties or only on tags (see above) |
 | `rules` (`active`), `sort` (`id`) | scenario search: rule set, order of the reserved rows (`id`, `random`) |
+| `countAvailable` (true) | scenario search: `false` reserves with `count=false` (no count of the free rows; Databucket 3.17.0+) |
 | `p95` (1000), `maxFailedPercent` (1) | assertions |
 | `rows` (100000), `reservedPercent` (20), `tags` (10), `history` (true), `admin` (`perf-admin`) | prepareData |
 | `superUser`, `superPassword` (`super`, `super`) | prepareData: the SUPER admin creating the project and accounts |

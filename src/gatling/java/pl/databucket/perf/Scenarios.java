@@ -108,7 +108,7 @@ public final class Scenarios {
 
     private static ChainBuilder search(Filters filters) {
         return exec(authorized(http("search 1. find and reserve: " + filters.name())
-                .post(DATA + "/reserve?limit=1&sort=" + PerfConfig.SORT)
+                .post(DATA + "/reserve?limit=1&sort=" + PerfConfig.SORT + (PerfConfig.COUNT_AVAILABLE ? "" : "&count=false"))
                 .body(StringBody(filters.searchBody()))
                 .check(status().is(200), jsonPath("$.data[0].id").saveAs("id"))))
                 .exec(delay())

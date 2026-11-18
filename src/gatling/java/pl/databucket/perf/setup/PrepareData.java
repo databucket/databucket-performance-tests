@@ -46,6 +46,7 @@ public final class PrepareData {
         long bucketId = bucket(admin);
         rows(admin);
         tags(admin, bucketId);
+        cleanUp(admin);
         reserved(admin);
         System.out.println("Ready.");
     }
@@ -177,6 +178,21 @@ public final class PrepareData {
             if (done % 20_000 == 0 || done == PerfConfig.ROWS)
                 System.out.printf(Locale.ROOT, "  %d rows (%d s)%n", done, (System.currentTimeMillis() - start) / 1000);
         }
+    }
+
+    /**
+     * Back to the state before the tests: rows created by earlier runs deleted (the scenario create makes them faster
+     * than delete removes them, and they would change the next run), rows left reserved by testers released.
+     */
+    private static void cleanUp(DatabucketClient admin) {
+        String data = "/api/bucket/" + PerfConfig.BUCKET;
+        JsonNode deleted = admin.call("DELETE", data, rules(List.of("$.origin", "==", TestUsers.CREATED)), 200,
+                "Databucket-Api-Version", "2");
+        ObjectNode release = rules(List.of("owner", "like", PerfConfig.TESTER_PREFIX + "%"));
+        release.put("reserved", false);
+        JsonNode released = admin.call("PUT", data, release, 200, "Databucket-Api-Version", "2");
+        System.out.println("Clean-up: rows created by earlier runs: " + deleted.path("message").asText()
+                + "; reserved by testers: " + released.path("message").asText());
     }
 
     /** RESERVED_PERCENT of the rows of prepareData reserved by the admin, random ones. */

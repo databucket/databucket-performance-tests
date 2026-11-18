@@ -57,6 +57,11 @@ public final class PerfConfig {
     /** Scenario search: the rule set (src/gatling/resources/rules.json) and the order of the reserved rows. */
     public static final String RULES = text("rules", "active");
     public static final String SORT = text("sort", "id");
+    /**
+     * Scenario search: whether the reservation counts the free rows still matching (available in the response;
+     * reserve?count=false skips it, Databucket 3.17.0+).
+     */
+    public static final boolean COUNT_AVAILABLE = Boolean.parseBoolean(text("countAvailable", "true"));
 
     /** The test fails when the 95th percentile of the response times (ms) or the share of failed requests (%) is higher. */
     public static final int P95 = number("p95", 1000);
@@ -79,7 +84,7 @@ public final class PerfConfig {
     public static String describe() {
         return "Databucket " + BASE_URL + ", project " + PROJECT + ", bucket " + BUCKET
                 + " | " + USERS + " users of " + TESTERS + " accounts, mix " + MIX
-                + " | filter " + FILTER + ("tags".equals(FILTER) ? " (tag " + TAG + ")" : " (rules " + RULES + ")")
+                + " | filter " + FILTER + (COUNT_AVAILABLE ? "" : ", reserve without counting available") + ("tags".equals(FILTER) ? " (tag " + TAG + ")" : " (rules " + RULES + ")")
                 + " | ramp-up " + RAMP_UP.toSeconds() + " s, then " + DURATION.toSeconds() + " s"
                 + " | delay " + DELAY_MIN.toMillis() + "-" + DELAY_MAX.toMillis() + " ms"
                 + " | p95 < " + P95 + " ms, failed < " + MAX_FAILED_PERCENT + " %";
