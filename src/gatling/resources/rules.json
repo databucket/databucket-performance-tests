@@ -1,0 +1,30 @@
+{
+  "new-orders": {
+    "description": "NEW orders (5 % of the rows)",
+    "rules": [["$.status", "==", "NEW"]]
+  },
+  "paid-warszawa": {
+    "description": "PAID orders from Warszawa (two conditions, ~10 % of the rows)",
+    "rules": [["$.status", "==", "PAID"], ["$.city", "==", "Warszawa"]]
+  },
+  "customer": {
+    "description": "orders of one customer (n % 50000 = 123: 1 row in 20k rows, 20 in 1M); fewer rows than users = failed reservations",
+    "rules": [["$.customer", "==", "customer-123"]]
+  },
+  "total-range": {
+    "description": "orders with the total between 100 and 200 (~10 %)",
+    "rules": [["$.total", ">=", 100], ["$.total", "<", 200]]
+  },
+  "shipped-or-cancelled-krakow": {
+    "description": "SHIPPED or CANCELLED orders from Krakow (or)",
+    "rules": [{"or": [["$.status", "==", "SHIPPED"], ["$.status", "==", "CANCELLED"]]}, ["$.city", "==", "Krakow"]]
+  },
+  "email-like": {
+    "description": "email starting with user12 (like, no index helps)",
+    "rules": [["$.email", "like", "user12%"]]
+  },
+  "item": {
+    "description": "orders with the item sku-42 (array contains)",
+    "rules": [["sku-42", "in", "$.items"]]
+  }
+}
