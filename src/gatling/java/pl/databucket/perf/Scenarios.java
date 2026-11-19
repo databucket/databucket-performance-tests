@@ -121,7 +121,7 @@ public final class Scenarios {
 
     /** Finds users created by the scenario create and released by it (finished): never more deleted than created. */
     private static ChainBuilder delete(Filters filters) {
-        return exec(authorized(http("delete 1. find created users").post(DATA + "/get?limit=20")
+        return exec(authorized(http("delete 1. find created users").post(DATA + "/get?limit=20" + (PerfConfig.COUNT_TOTAL ? "" : "&count=false"))
                 .body(StringBody(filters.deleteBody()))
                 .check(status().is(200), jsonPath("$.data[*].id").findAll().optional().saveAs("ids"))))
                 .doIfOrElse(session -> session.contains("ids")).then(

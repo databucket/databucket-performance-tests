@@ -134,6 +134,7 @@ A rule set must match more free rows than there are search users, otherwise rese
 | `filter` (`properties`), `tag` (`perf-tag-03`) | rules on properties or only on tags (see above) |
 | `rules` (`active`), `sort` (`id`) | scenario search: rule set, order of the reserved rows (`id`, `random`) |
 | `countAvailable` (true) | scenario search: `false` reserves with `count=false` (no count of the free rows; Databucket 3.17.0+) |
+| `countTotal` (true) | scenario delete: `false` finds the created users with `get?count=false` (no count of all matching rows; Databucket 3.18.1+) |
 | `p95` (1000), `maxFailedPercent` (1) | assertions |
 | `rows` (100000), `reservedPercent` (20), `tags` (10), `history` (true), `admin` (`perf-admin`) | prepareData |
 | `superUser`, `superPassword` (`super`, `super`) | prepareData: the SUPER admin creating the project and accounts |
