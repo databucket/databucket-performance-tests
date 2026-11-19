@@ -1,0 +1,9 @@
+Started 2026-11-19T22:14:14
+Databucket http://databucket.localhost, project perf, bucket users
+200 users of 1000 accounts, mix {search=100}
+filter properties, reserve without counting available (rules premium-pl)
+ramp-up 10 s, then 120 s
+delay 0-0 ms
+p95 < 100000 ms, failed < 100.0 %
+search {"rules":[["$.type","==","PREMIUM"],["$.country","==","PL"],["$.origin","==",null]]}, sort id
+delete {"rules":[["$.origin","==","perf-create"],["reserved","==",false]]}

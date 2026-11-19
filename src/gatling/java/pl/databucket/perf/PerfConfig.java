@@ -62,6 +62,11 @@ public final class PerfConfig {
      * reserve?count=false skips it, Databucket 3.17.0+).
      */
     public static final boolean COUNT_AVAILABLE = Boolean.parseBoolean(text("countAvailable", "true"));
+    /**
+     * Scenario delete: whether finding the created users counts all of them (total in the response; get?count=false
+     * skips it, Databucket 3.18.1+).
+     */
+    public static final boolean COUNT_TOTAL = Boolean.parseBoolean(text("countTotal", "true"));
 
     /** The test fails when the 95th percentile of the response times (ms) or the share of failed requests (%) is higher. */
     public static final int P95 = number("p95", 1000);
@@ -84,7 +89,7 @@ public final class PerfConfig {
     public static String describe() {
         return "Databucket " + BASE_URL + ", project " + PROJECT + ", bucket " + BUCKET
                 + " | " + USERS + " users of " + TESTERS + " accounts, mix " + MIX
-                + " | filter " + FILTER + (COUNT_AVAILABLE ? "" : ", reserve without counting available") + ("tags".equals(FILTER) ? " (tag " + TAG + ")" : " (rules " + RULES + ")")
+                + " | filter " + FILTER + (COUNT_AVAILABLE ? "" : ", reserve without counting available") + (COUNT_TOTAL ? "" : ", get without counting total") + ("tags".equals(FILTER) ? " (tag " + TAG + ")" : " (rules " + RULES + ")")
                 + " | ramp-up " + RAMP_UP.toSeconds() + " s, then " + DURATION.toSeconds() + " s"
                 + " | delay " + DELAY_MIN.toMillis() + "-" + DELAY_MAX.toMillis() + " ms"
                 + " | p95 < " + P95 + " ms, failed < " + MAX_FAILED_PERCENT + " %";
