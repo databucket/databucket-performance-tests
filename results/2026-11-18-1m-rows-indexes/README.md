@@ -27,9 +27,9 @@ seen earlier (an `AND` of two properties with `LIMIT/OFFSET` in `/get`) didn't s
 
 | Run | Folder | What was different |
 |---|---|---|
-| A | [a-no-indexes](a-no-indexes/report/index.html) | only the standard indexes of a bucket (`data_id`, `(tag_id, reserved)`) |
-| B | [b-indexes](b-indexes/report/index.html) | + 6 expression indexes (below), made by hand: what the "indexed properties" feature would create |
-| C | [c-indexes-custom-plans](c-indexes-custom-plans/report/index.html) | B + `plan_cache_mode = force_custom_plan` for the connections of Databucket (`ALTER ROLE databucket_user SET ...`, app restarted; reverted after the run) |
+| A | [a-no-indexes](https://databucket.github.io/databucket-performance-tests/results/2026-11-18-1m-rows-indexes/a-no-indexes/report/index.html) | only the standard indexes of a bucket (`data_id`, `(tag_id, reserved)`) |
+| B | [b-indexes](https://databucket.github.io/databucket-performance-tests/results/2026-11-18-1m-rows-indexes/b-indexes/report/index.html) | + 6 expression indexes (below), made by hand: what the "indexed properties" feature would create |
+| C | [c-indexes-custom-plans](https://databucket.github.io/databucket-performance-tests/results/2026-11-18-1m-rows-indexes/c-indexes-custom-plans/report/index.html) | B + `plan_cache_mode = force_custom_plan` for the connections of Databucket (`ALTER ROLE databucket_user SET ...`, app restarted; reverted after the run) |
 
 Indexes of run B and C (built in 4.5 s together, ~7 MB each, 22 MB the numeric one):
 

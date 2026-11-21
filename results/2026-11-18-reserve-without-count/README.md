@@ -23,10 +23,10 @@ by the admin, 100 virtual users, ramp-up 30 s + 120 s, mix create 40 / search 30
 
 | Run | Folder | Search rules | Count of free rows |
 |---|---|---|---|
-| B count | [b-properties-indexes-count](b-properties-indexes-count/report/index.html) | `premium-pl` (properties) | yes (as before) |
-| B no count | [b-properties-indexes-no-count](b-properties-indexes-no-count/report/index.html) | `premium-pl` | **no** |
-| D count | [d-tags-count](d-tags-count/report/index.html) | tag `perf-tag-03` | yes |
-| D no count | [d-tags-no-count](d-tags-no-count/report/index.html) | tag `perf-tag-03` | **no** |
+| B count | [b-properties-indexes-count](https://databucket.github.io/databucket-performance-tests/results/2026-11-18-reserve-without-count/b-properties-indexes-count/report/index.html) | `premium-pl` (properties) | yes (as before) |
+| B no count | [b-properties-indexes-no-count](https://databucket.github.io/databucket-performance-tests/results/2026-11-18-reserve-without-count/b-properties-indexes-no-count/report/index.html) | `premium-pl` | **no** |
+| D count | [d-tags-count](https://databucket.github.io/databucket-performance-tests/results/2026-11-18-reserve-without-count/d-tags-count/report/index.html) | tag `perf-tag-03` | yes |
+| D no count | [d-tags-no-count](https://databucket.github.io/databucket-performance-tests/results/2026-11-18-reserve-without-count/d-tags-no-count/report/index.html) | tag `perf-tag-03` | **no** |
 
 ## Results
 

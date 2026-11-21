@@ -25,7 +25,7 @@ create 40 / search 30 / delete 30, pauses 500-2000 ms, rules `premium-pl`, reser
   bucket table.
 
 Command: `./gradlew gatlingRun -Pusers=100 -PrampUp=30 -Pduration=600 -Prules=premium-pl -PcountAvailable=false
--PcountTotal=false` → [run](run/report/index.html) (settings, console).
+-PcountTotal=false` → [run](https://databucket.github.io/databucket-performance-tests/results/2026-11-19-10min-3.18.1/run/report/index.html) (settings, console).
 
 ## Results
 

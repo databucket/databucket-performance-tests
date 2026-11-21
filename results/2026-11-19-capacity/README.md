@@ -28,14 +28,14 @@ Reservations per second = reservations of the run / 130 s. 0 failed requests exc
 
 | sort | users | reservations | **reservations/s** | requests/s | p50 | p95 | p99 | report |
 |---|---|---|---|---|---|---|---|---|
-| id | 10 | 23,435 | **180** | 541 | 17 ms | 22 ms | 25 ms | [id-10-users](id-10-users/report/index.html) |
-| id | 50 | 29,006 | **223** | 670 | 69 ms | 108 ms | 132 ms | [id-50-users](id-50-users/report/index.html) (repeated, see note) |
-| id | 100 | 27,134 | **209** | 627 | 139 ms | 278 ms | 405 ms | [id-100-users](id-100-users/report/index.html) |
-| id | 200 | 26,145 | **201** | 600 | 286 ms | 598 ms | 862 ms | [id-200-users](id-200-users/report/index.html) |
-| random | 10 | 7,975 | **61** | 184 | 22 ms | 125 ms | 167 ms | [random-10-users](random-10-users/report/index.html) |
-| random | 50 | 9,896 | **76** | 229 | 145 ms | 495 ms | 627 ms | [random-50-users](random-50-users/report/index.html) |
-| random | 100 | 10,462 | **80** | 240 | 355 ms | 677 ms | 805 ms | [random-100-users](random-100-users/report/index.html) |
-| random | 200 | 10,127 | **78** | 233 | 796 ms | 1,181 ms | 1,431 ms | [random-200-users](random-200-users/report/index.html) |
+| id | 10 | 23,435 | **180** | 541 | 17 ms | 22 ms | 25 ms | [id-10-users](https://databucket.github.io/databucket-performance-tests/results/2026-11-19-capacity/id-10-users/report/index.html) |
+| id | 50 | 29,006 | **223** | 670 | 69 ms | 108 ms | 132 ms | [id-50-users](https://databucket.github.io/databucket-performance-tests/results/2026-11-19-capacity/id-50-users/report/index.html) (repeated, see note) |
+| id | 100 | 27,134 | **209** | 627 | 139 ms | 278 ms | 405 ms | [id-100-users](https://databucket.github.io/databucket-performance-tests/results/2026-11-19-capacity/id-100-users/report/index.html) |
+| id | 200 | 26,145 | **201** | 600 | 286 ms | 598 ms | 862 ms | [id-200-users](https://databucket.github.io/databucket-performance-tests/results/2026-11-19-capacity/id-200-users/report/index.html) |
+| random | 10 | 7,975 | **61** | 184 | 22 ms | 125 ms | 167 ms | [random-10-users](https://databucket.github.io/databucket-performance-tests/results/2026-11-19-capacity/random-10-users/report/index.html) |
+| random | 50 | 9,896 | **76** | 229 | 145 ms | 495 ms | 627 ms | [random-50-users](https://databucket.github.io/databucket-performance-tests/results/2026-11-19-capacity/random-50-users/report/index.html) |
+| random | 100 | 10,462 | **80** | 240 | 355 ms | 677 ms | 805 ms | [random-100-users](https://databucket.github.io/databucket-performance-tests/results/2026-11-19-capacity/random-100-users/report/index.html) |
+| random | 200 | 10,127 | **78** | 233 | 796 ms | 1,181 ms | 1,431 ms | [random-200-users](https://databucket.github.io/databucket-performance-tests/results/2026-11-19-capacity/random-200-users/report/index.html) |
 
 ## Conclusions
 

@@ -3,6 +3,10 @@
 Load tests of the Databucket API with [Gatling](https://gatling.io) (Java DSL), run with Gradle. They are run by hand
 against a Databucket you start yourself; no CI runs them.
 
+**Results:** the measurements on 1 million records are in [results](results/README.md); their Gatling reports open in the
+browser at **https://databucket.github.io/databucket-performance-tests/** (GitHub Pages), and what they mean is on the
+[Performance](https://github.com/databucket/databucket-server/wiki/Performance) page of the Databucket wiki.
+
 ## Running
 
 Start Databucket, e.g. the docker compose of [databucket-server](https://github.com/databucket/databucket-server)

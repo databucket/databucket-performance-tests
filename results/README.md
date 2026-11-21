@@ -1,7 +1,9 @@
 # Results
 
 Kept runs, one folder per measurement: a `README.md` with the question, the setup and the conclusions, and a folder
-per run with its Gatling report (`report/index.html`, opens from the disk), its settings and console output.
+per run with its Gatling report (`report/index.html`), its settings and console output. The reports open in the browser
+on GitHub Pages: [all reports](https://databucket.github.io/databucket-performance-tests/) (GitHub itself shows an
+HTML file as its source); the links in the `README.md` files lead there.
 
 Keep a run: `./gradlew keepReport -Pname=<measurement>/<run>` right after `gatlingRun` (copies the last report and its
 `settings.txt`); add the console output and describe the measurement in its `README.md`.

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Databucket load tests</title>
+<style>
+  :root { color-scheme: light dark; --text: #1f2328; --muted: #59636e; --link: #0d47a1; --line: #d1d9e0; --bg: #ffffff; }
+  @media (prefers-color-scheme: dark) { :root { --text: #e6edf3; --muted: #9198a1; --link: #5b9bf5; --line: #3d444d; --bg: #0d1117; } }
+  body { margin: 0 auto; max-width: 860px; padding: 24px 16px 48px; font: 16px/1.55 -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+  h1 { font-size: 28px; margin: 0 0 8px; }
+  h2 { font-size: 19px; margin: 32px 0 4px; padding-top: 16px; border-top: 1px solid var(--line); }
+  p { margin: 4px 0; color: var(--muted); }
+  a { color: var(--link); }
+  ul { margin: 8px 0 0; padding-left: 20px; columns: 2; }
+  @media (max-width: 600px) { ul { columns: 1; } }
+</style>
+</head>
+<body>
+<h1>Databucket load tests</h1>
+<p>Gatling reports of the measurements of <a href="https://github.com/databucket/databucket-server">Databucket</a> on a bucket with 1 million records. What they mean: the <a href="https://github.com/databucket/databucket-server/wiki/Performance">Performance</a> page of the wiki. The project: <a href="https://github.com/databucket/databucket-performance-tests">databucket-performance-tests</a>.</p>
+<section>
+  <h2>1M rows: without and with indexes on the properties (2026-11-18)</h2>
+  <p><a href="https://github.com/databucket/databucket-performance-tests/blob/main/results/2026-11-18-1m-rows-indexes/README.md">The question, the setup and the conclusions</a></p>
+  <ul>
+    <li><a href="results/2026-11-18-1m-rows-indexes/a-no-indexes/report/index.html">a-no-indexes</a></li>
+    <li><a href="results/2026-11-18-1m-rows-indexes/b-indexes/report/index.html">b-indexes</a></li>
+    <li><a href="results/2026-11-18-1m-rows-indexes/c-indexes-custom-plans/report/index.html">c-indexes-custom-plans</a></li>
+  </ul>
+</section>
+<section>
+  <h2>1M rows: rules on a tag vs rules on properties (2026-11-18)</h2>
+  <p><a href="https://github.com/databucket/databucket-performance-tests/blob/main/results/2026-11-18-1m-rows-tags/README.md">The question, the setup and the conclusions</a></p>
+  <ul>
+    <li><a href="results/2026-11-18-1m-rows-tags/a2-properties-no-indexes/report/index.html">a2-properties-no-indexes</a></li>
+    <li><a href="results/2026-11-18-1m-rows-tags/b2-properties-indexes/report/index.html">b2-properties-indexes</a></li>
+    <li><a href="results/2026-11-18-1m-rows-tags/d-tags-no-property-indexes/report/index.html">d-tags-no-property-indexes</a></li>
+  </ul>
+</section>
+<section>
+  <h2>Reservation without counting the free rows (2026-11-18)</h2>
+  <p><a href="https://github.com/databucket/databucket-performance-tests/blob/main/results/2026-11-18-reserve-without-count/README.md">The question, the setup and the conclusions</a></p>
+  <ul>
+    <li><a href="results/2026-11-18-reserve-without-count/b-properties-indexes-count/report/index.html">b-properties-indexes-count</a></li>
+    <li><a href="results/2026-11-18-reserve-without-count/b-properties-indexes-no-count/report/index.html">b-properties-indexes-no-count</a></li>
+    <li><a href="results/2026-11-18-reserve-without-count/d-tags-count/report/index.html">d-tags-count</a></li>
+    <li><a href="results/2026-11-18-reserve-without-count/d-tags-no-count/report/index.html">d-tags-no-count</a></li>
+  </ul>
+</section>
+<section>
+  <h2>10 minutes on Databucket 3.18.1 (2026-11-19)</h2>
+  <p><a href="https://github.com/databucket/databucket-performance-tests/blob/main/results/2026-11-19-10min-3.18.1/README.md">The question, the setup and the conclusions</a></p>
+  <ul>
+    <li><a href="results/2026-11-19-10min-3.18.1/run/report/index.html">run</a></li>
+  </ul>
+</section>
+<section>
+  <h2>Capacity: how many reservations per second (2026-11-19)</h2>
+  <p><a href="https://github.com/databucket/databucket-performance-tests/blob/main/results/2026-11-19-capacity/README.md">The question, the setup and the conclusions</a></p>
+  <ul>
+    <li><a href="results/2026-11-19-capacity/id-10-users/report/index.html">id-10-users</a></li>
+    <li><a href="results/2026-11-19-capacity/id-100-users/report/index.html">id-100-users</a></li>
+    <li><a href="results/2026-11-19-capacity/id-200-users/report/index.html">id-200-users</a></li>
+    <li><a href="results/2026-11-19-capacity/id-50-users/report/index.html">id-50-users</a></li>
+    <li><a href="results/2026-11-19-capacity/random-10-users/report/index.html">random-10-users</a></li>
+    <li><a href="results/2026-11-19-capacity/random-100-users/report/index.html">random-100-users</a></li>
+    <li><a href="results/2026-11-19-capacity/random-200-users/report/index.html">random-200-users</a></li>
+    <li><a href="results/2026-11-19-capacity/random-50-users/report/index.html">random-50-users</a></li>
+  </ul>
+</section>
+</body>
+</html>

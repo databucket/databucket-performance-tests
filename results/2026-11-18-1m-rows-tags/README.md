@@ -25,9 +25,9 @@ PostgreSQL 18 defaults, `max-concurrent-requests` 30), with these changes of the
 
 | Run | Folder | Rules of search (find and reserve) / delete (find created rows) | Indexes |
 |---|---|---|---|
-| A2 | [a2-properties-no-indexes](a2-properties-no-indexes/report/index.html) | `premium-pl`: `$.type == PREMIUM`, `$.country == PL` (~3 %) / `$.origin == perf-create`, `reserved == false` | standard only: `data_id`, `(tag_id, reserved)` |
-| B2 | [b2-properties-indexes](b2-properties-indexes/report/index.html) | as A2 | + expression indexes on `type`, `country`, `origin`, `status`, `group`, `age` |
-| D | [d-tags-no-property-indexes](d-tags-no-property-indexes/report/index.html) | `tagId == perf-tag-03` (10 %) / `tagId == perf-created`, `reserved == false` | standard only |
+| A2 | [a2-properties-no-indexes](https://databucket.github.io/databucket-performance-tests/results/2026-11-18-1m-rows-tags/a2-properties-no-indexes/report/index.html) | `premium-pl`: `$.type == PREMIUM`, `$.country == PL` (~3 %) / `$.origin == perf-create`, `reserved == false` | standard only: `data_id`, `(tag_id, reserved)` |
+| B2 | [b2-properties-indexes](https://databucket.github.io/databucket-performance-tests/results/2026-11-18-1m-rows-tags/b2-properties-indexes/report/index.html) | as A2 | + expression indexes on `type`, `country`, `origin`, `status`, `group`, `age` |
+| D | [d-tags-no-property-indexes](https://databucket.github.io/databucket-performance-tests/results/2026-11-18-1m-rows-tags/d-tags-no-property-indexes/report/index.html) | `tagId == perf-tag-03` (10 %) / `tagId == perf-created`, `reserved == false` | standard only |
 
 Commands: A2 and B2 `./gradlew gatlingRun -Pusers=100 -PrampUp=30 -Pduration=120 -Prules=premium-pl`,
 D `./gradlew gatlingRun -Pusers=100 -PrampUp=30 -Pduration=120 -Pfilter=tags -Ptag=perf-tag-03`.
